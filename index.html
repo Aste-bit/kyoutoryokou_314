@@ -330,6 +330,8 @@ body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--warm-white);c
 .story-close:hover{background:rgba(255,255,255,.1)}
 .story-slide-container{flex:1;position:relative;overflow:hidden}
 .story-slide{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;transform:scale(1.02);transition:opacity .5s ease,transform .5s ease;pointer-events:none}
+.story-slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;z-index:0}
+.story-slide-overlay{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,.25) 0%,rgba(0,0,0,.35) 100%)}
 .story-slide.active{opacity:1;transform:scale(1);pointer-events:auto}
 .story-slide.exit-left{opacity:0;transform:translateX(-8%) scale(.98)}
 .story-slide.enter-right{opacity:0;transform:translateX(8%) scale(.98)}
@@ -343,56 +345,63 @@ body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--warm-white);c
 .story-opening-label{font-family:'Caveat',cursive;color:var(--sakura);font-size:1.1rem;letter-spacing:.2em;opacity:0;animation:storyFadeUp .8s .3s forwards}
 .story-opening-title{font-family:'Zen Old Mincho',serif;font-size:4rem;color:#FBF8F5;letter-spacing:.25em;margin:.3rem 0;opacity:0;animation:storyFadeUp .8s .5s forwards;position:relative;z-index:1}
 .story-opening-line{width:50px;height:1px;background:var(--sakura);margin:.8rem auto;opacity:0;animation:storyFadeUp .6s .7s forwards}
-.story-opening-dates{font-family:'Zen Kaku Gothic New',sans-serif;font-size:.9rem;color:var(--gold-light);letter-spacing:.25em;opacity:0;animation:storyFadeUp .8s .9s forwards}
-.story-opening-meta{font-size:.78rem;color:rgba(251,248,245,.4);margin-top:1.5rem;letter-spacing:.1em;opacity:0;animation:storyFadeUp .8s 1.1s forwards}
+.story-opening-dates{font-family:'Zen Kaku Gothic New',sans-serif;font-size:.9rem;color:var(--gold-light);letter-spacing:.25em;opacity:0;animation:storyFadeUp .8s .9s forwards;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.story-opening-meta{font-size:.78rem;color:rgba(251,248,245,.6);margin-top:1.5rem;letter-spacing:.1em;opacity:0;animation:storyFadeUp .8s 1.1s forwards;text-shadow:0 1px 6px rgba(0,0,0,.5)}
 .story-opening-petals{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .story-opening-petal{position:absolute;font-size:1.2rem;opacity:0;animation:storyPetalFall 4s linear infinite}
 @keyframes storyPetalFall{0%{opacity:0;transform:translateY(-20px) rotate(0)}10%{opacity:.5}80%{opacity:.4}100%{opacity:0;transform:translateY(100vh) rotate(360deg)}}
 @keyframes storyFadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
 /* Route slide */
-.story-route{align-items:center;justify-content:center;background:linear-gradient(160deg,#1a1614,#252220)}
-.story-route-title{font-family:'Caveat',cursive;color:var(--sakura);font-size:1rem;letter-spacing:.15em;margin-bottom:1.5rem;opacity:0;animation:storyFadeUp .6s .2s forwards}
-.story-route svg{max-width:320px;width:85%}
-.story-route-stats{display:flex;gap:2rem;margin-top:2rem;opacity:0;animation:storyFadeUp .6s 1.5s forwards}
-.story-route-stat{text-align:center}
-.story-route-stat-num{font-family:'Zen Old Mincho',serif;font-size:1.6rem;color:#FBF8F5;font-weight:700}
-.story-route-stat-label{font-size:.65rem;color:rgba(251,248,245,.4);letter-spacing:.1em;margin-top:.15rem}
+/* Transit slide — full-screen photo like spots */
+.story-transit{background:#1a1614}
+.story-transit-single .story-spot-img-wrap{position:absolute;inset:0}
+.story-transit-single .story-spot-content{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.5rem 3rem;z-index:3;text-shadow:0 1px 8px rgba(0,0,0,.8),0 0 25px rgba(0,0,0,.5)}
+/* Dual photo: split screen */
+.story-transit-dual{position:absolute;inset:0;display:flex;flex-direction:column}
+.story-transit-half{position:relative;flex:1;overflow:hidden}
+.story-transit-half-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.story-transit-half-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;z-index:1}
+.story-transit-half-label{position:absolute;bottom:.6rem;left:.8rem;font-size:.7rem;color:#FBF8F5;letter-spacing:.08em;z-index:4;opacity:0;animation:storyFadeUp .5s .8s forwards;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.story-transit-half-gradient{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,rgba(0,0,0,.15) 20%,transparent 40%)}
+/* Thin divider between halves */
+.story-transit-divider{position:relative;z-index:10;display:flex;align-items:center;justify-content:center;height:0;overflow:visible}
+.story-transit-divider-text{font-family:'Zen Old Mincho',serif;font-size:.85rem;color:#FBF8F5;letter-spacing:.15em;padding:.35rem 1rem;background:rgba(26,22,20,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:20px;white-space:nowrap;opacity:0;animation:storyFadeUp .5s .4s forwards;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 /* Day break slide */
 .story-daybreak{align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#1a1614,#1e1c1a)}
-.story-daybreak-num{font-family:'Caveat',cursive;color:var(--sakura);font-size:1rem;letter-spacing:.2em;opacity:0;animation:storyFadeUp .6s .2s forwards}
-.story-daybreak-date{font-family:'Zen Old Mincho',serif;font-size:2.8rem;color:#FBF8F5;letter-spacing:.15em;margin:.3rem 0;opacity:0;animation:storyFadeUp .7s .4s forwards}
-.story-daybreak-weekday{font-size:.85rem;color:rgba(251,248,245,.35);letter-spacing:.15em;opacity:0;animation:storyFadeUp .6s .6s forwards}
+.story-daybreak::before{content:none}
+.story-daybreak-num{font-family:'Caveat',cursive;color:var(--sakura);font-size:1rem;letter-spacing:.2em;opacity:0;animation:storyFadeUp .6s .2s forwards;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.story-daybreak-date{font-family:'Zen Old Mincho',serif;font-size:2.8rem;color:#FBF8F5;letter-spacing:.15em;margin:.3rem 0;opacity:0;animation:storyFadeUp .7s .4s forwards;text-shadow:0 2px 12px rgba(0,0,0,.8),0 0 30px rgba(0,0,0,.5)}
+.story-daybreak-weekday{font-size:.85rem;color:rgba(251,248,245,.7);letter-spacing:.15em;opacity:0;animation:storyFadeUp .6s .6s forwards;text-shadow:0 1px 8px rgba(0,0,0,.7)}
 /* Spot slide */
 .story-spot{position:relative;background:#0a0908}
-.story-spot-img-wrap{position:absolute;inset:0}
-.story-spot-img-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5) saturate(.7);transform:scale(1.1)}
+.story-spot-img-wrap{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat}
 .story-spot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center 35%;opacity:0;transition:opacity .8s;animation:storyKenBurns 8s ease-out forwards;z-index:1}
 .story-spot-img.loaded{opacity:1}
 @keyframes storyKenBurns{from{transform:scale(1.08)}to{transform:scale(1)}}
-.story-spot-gradient{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(10,9,8,.95) 0%,rgba(10,9,8,.5) 25%,rgba(10,9,8,0) 48%,rgba(10,9,8,.05) 100%)}
-.story-spot-content{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.5rem 3rem;z-index:3}
+.story-spot-gradient{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.2) 18%,transparent 35%)}
+.story-spot-content{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.5rem 3rem;z-index:3;text-shadow:0 1px 8px rgba(0,0,0,.8),0 0 25px rgba(0,0,0,.5)}
 .story-spot-category{display:inline-block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.2rem .6rem;border-radius:3px;margin-bottom:.6rem;font-weight:600}
 .story-spot-category.sight{background:rgba(123,143,78,.25);color:#c8d8a0}
 .story-spot-category.food{background:rgba(212,135,77,.25);color:#e8b88a}
 .story-spot-name{font-family:'Zen Old Mincho',serif;font-size:1.8rem;color:#FBF8F5;letter-spacing:.08em;line-height:1.3;margin-bottom:.5rem;opacity:0;animation:storyFadeUp .6s .15s forwards}
 .story-spot-time{font-size:.72rem;color:rgba(251,248,245,.4);letter-spacing:.08em;margin-bottom:.6rem;opacity:0;animation:storyFadeUp .5s .3s forwards}
 .story-spot-stars{display:flex;gap:2px;margin-bottom:.5rem;opacity:0;animation:storyFadeUp .5s .4s forwards}
-.story-spot-star{font-size:1rem;color:#F0C850}
-.story-spot-star.empty{color:rgba(255,255,255,.25)}
+.story-spot-star{font-size:1rem;color:#FFD700;text-shadow:0 0 8px rgba(255,215,0,.6),0 1px 4px rgba(0,0,0,.5)}
+.story-spot-star.empty{color:rgba(255,255,255,.3);text-shadow:none}
 .story-spot-comment{font-size:.88rem;color:rgba(251,248,245,.75);line-height:1.7;font-style:italic;opacity:0;animation:storyFadeUp .6s .5s forwards;max-width:85%}
 /* Ending slide */
 .story-ending{align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#1a1614,#2C2420);position:relative;overflow:hidden}
 .story-ending::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(242,167,179,.08),transparent 70%)}
 .story-ending-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2.5rem;margin-bottom:2rem;opacity:0;animation:storyFadeUp .7s .3s forwards}
-.story-ending-stat-num{font-family:'Zen Old Mincho',serif;font-size:2.2rem;color:#FBF8F5;font-weight:700;line-height:1}
-.story-ending-stat-label{font-size:.68rem;color:rgba(251,248,245,.35);letter-spacing:.1em;margin-top:.25rem}
+.story-ending-stat-num{font-family:'Zen Old Mincho',serif;font-size:2.2rem;color:#FBF8F5;font-weight:700;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.story-ending-stat-label{font-size:.68rem;color:rgba(251,248,245,.6);letter-spacing:.1em;margin-top:.25rem;text-shadow:0 1px 6px rgba(0,0,0,.5)}
 .story-ending-best{margin:1.5rem 0;padding:1rem 1.5rem;background:rgba(255,255,255,.04);border-radius:12px;border:1px solid rgba(255,255,255,.06);opacity:0;animation:storyFadeUp .7s .8s forwards}
-.story-ending-best-label{font-size:.65rem;color:var(--sakura);letter-spacing:.15em;margin-bottom:.4rem}
-.story-ending-best-name{font-family:'Zen Old Mincho',serif;font-size:1.3rem;color:#FBF8F5;letter-spacing:.1em}
+.story-ending-best-label{font-size:.65rem;color:var(--sakura);letter-spacing:.15em;margin-bottom:.4rem;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.story-ending-best-name{font-family:'Zen Old Mincho',serif;font-size:1.3rem;color:#FBF8F5;letter-spacing:.1em;text-shadow:0 1px 8px rgba(0,0,0,.6)}
 .story-ending-best-stars{display:flex;justify-content:center;gap:2px;margin-top:.3rem}
 .story-ending-best-stars .story-spot-star{font-size:1.1rem}
-.story-ending-title{font-family:'Zen Old Mincho',serif;font-size:2rem;color:#FBF8F5;letter-spacing:.2em;margin-top:1.5rem;opacity:0;animation:storyFadeUp .7s 1.2s forwards}
-.story-ending-sub{font-size:.8rem;color:rgba(251,248,245,.3);letter-spacing:.15em;margin-top:.4rem;opacity:0;animation:storyFadeUp .6s 1.4s forwards}
+.story-ending-title{font-family:'Zen Old Mincho',serif;font-size:2rem;color:#FBF8F5;letter-spacing:.2em;margin-top:1.5rem;opacity:0;animation:storyFadeUp .7s 1.2s forwards;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.story-ending-sub{font-size:.8rem;color:rgba(251,248,245,.6);letter-spacing:.15em;margin-top:.4rem;opacity:0;animation:storyFadeUp .6s 1.4s forwards;text-shadow:0 1px 6px rgba(0,0,0,.5)}
 .story-ending-petal{font-size:1.8rem;margin-top:1.5rem;opacity:0;animation:storyFadeUp .5s 1.6s forwards}
 /* Pause indicator */
 .story-paused-indicator{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:15;font-size:2.5rem;color:rgba(255,255,255,.6);opacity:0;transition:opacity .2s;pointer-events:none}
@@ -409,15 +418,15 @@ body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--warm-white);c
 .story-opening-meta{margin-top:.6rem}
 .story-opening-line{margin:.4rem auto}
 /* Route */
-.story-route svg{max-width:250px;width:60%}
-.story-route-title{margin-bottom:.6rem;font-size:.85rem}
-.story-route-stats{margin-top:.8rem;gap:1.5rem}
-.story-route-stat-num{font-size:1.2rem}
+/* Transit — landscape: side by side */
+.story-transit-dual{flex-direction:row}
+.story-transit-divider{height:auto;width:0;flex-direction:column}
+.story-transit-divider-text{writing-mode:vertical-rl;padding:.8rem .35rem;border-radius:20px;font-size:.8rem}
 /* Daybreak */
 .story-daybreak-date{font-size:2rem}
 .story-daybreak-num{font-size:.85rem}
 /* Spot — side-by-side layout */
-.story-spot-gradient{background:linear-gradient(to right,rgba(10,9,8,.97) 0%,rgba(10,9,8,.6) 30%,rgba(10,9,8,.05) 55%,rgba(10,9,8,.15) 100%)}
+.story-spot-gradient{background:linear-gradient(to right,rgba(0,0,0,.5) 0%,rgba(0,0,0,.2) 25%,transparent 50%)}
 .story-spot-content{inset:0;padding:2.5rem 1.2rem 1.2rem;display:flex;flex-direction:column;justify-content:flex-end;max-width:55%}
 .story-spot-img{object-position:center center}
 .story-spot-name{font-size:1.3rem;margin-bottom:.3rem}
@@ -438,7 +447,7 @@ body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--warm-white);c
 /* Wider landscape (tablets, desktop) */
 @media (orientation:landscape) and (min-height:501px){
 .story-spot-content{max-width:50%;padding:2rem 2rem 3rem}
-.story-spot-gradient{background:linear-gradient(to right,rgba(10,9,8,.9) 0%,rgba(10,9,8,.45) 35%,rgba(10,9,8,.05) 60%,rgba(10,9,8,.15) 100%)}
+.story-spot-gradient{background:linear-gradient(to right,rgba(0,0,0,.45) 0%,rgba(0,0,0,.15) 30%,transparent 55%)}
 .story-spot-img{object-position:center center}
 }
 </style>
@@ -1500,7 +1509,7 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
   var timer = null;
   var isPaused = false;
   var DURATION_OPENING = 5000;
-  var DURATION_ROUTE = 5500;
+  var DURATION_TRANSPORT = 5000;
   var DURATION_DAYBREAK = 3000;
   var DURATION_SPOT = 4500;
   var DURATION_ENDING = 7000;
@@ -1583,36 +1592,38 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
       dayData.push(dd);
     });
 
-    // Find overall best photo (highest starred, prefer user photos)
-    var overallBest = '';
-    var overallBestStars = -1;
-    allSpotPhotos.forEach(function(p) {
-      if (p.stars > overallBestStars) { overallBestStars = p.stars; overallBest = p.img; }
-    });
-    if (!overallBest && allSpotPhotos.length) overallBest = allSpotPhotos[0].img;
-
-    // Try to find a transport/travel photo for route slide
-    var routePhoto = getUserPhoto('__travel_route__') || '';
-    // Also check transport cards for any user photo
-    if (!routePhoto) {
-      var transportNames = [];
-      document.querySelectorAll('.timeline-card.transport .card-title').forEach(function(t) { transportNames.push(t.textContent.trim()); });
-      for (var tn = 0; tn < transportNames.length; tn++) {
-        var tp = getUserPhoto(transportNames[tn]);
-        if (tp) { routePhoto = tp; break; }
-      }
+    // Collect all album photos for opening/ending backgrounds
+    var albumPhotos = [];
+    for (var ai = 0; ai < 6; ai++) {
+      try {
+        var ap = localStorage.getItem('kyoto-album-' + ai);
+        if (ap) albumPhotos.push(ap);
+      } catch(e) {}
     }
+    // Shuffle album photos
+    for (var si = albumPhotos.length - 1; si > 0; si--) {
+      var sj = Math.floor(Math.random() * (si + 1));
+      var tmp = albumPhotos[si]; albumPhotos[si] = albumPhotos[sj]; albumPhotos[sj] = tmp;
+    }
+    // Pick different photos for opening and ending when possible
+    var openingBg = albumPhotos.length > 0 ? albumPhotos[0] : '';
+    var endingBg = albumPhotos.length > 1 ? albumPhotos[1] : openingBg;
 
     // Build final slide array
-    allSlides.push({ type: 'opening', duration: DURATION_OPENING, bgImg: overallBest });
-    allSlides.push({ type: 'route', duration: DURATION_ROUTE, bgImg: routePhoto });
+    allSlides.push({ type: 'opening', duration: DURATION_OPENING, bgImg: openingBg });
 
     days.forEach(function(day, idx) {
       allSlides.push({ type: 'daybreak', num: day.num, date: day.date, weekday: day.weekday, duration: DURATION_DAYBREAK, bgImg: dayData[idx].bestImg });
+      // After Day 1 daybreak, insert 東京駅→京都駅 transit
+      if (idx === 0) {
+        var depImg = getUserPhoto('東京駅出発') || '';
+        var arrImg = getUserPhoto('京都駅着') || '';
+        allSlides.push({ type: 'transit', label: '東京駅 → 京都駅', emoji: '🚅', img1: depImg, img1label: '東京駅出発', img2: arrImg, img2label: '京都駅着', duration: DURATION_TRANSPORT });
+      }
       dayData[idx].spots.forEach(function(s) { allSlides.push(s); });
     });
 
-    allSlides.push({ type: 'ending', duration: DURATION_ENDING, bgImg: overallBest });
+    allSlides.push({ type: 'ending', duration: DURATION_ENDING, bgImg: endingBg });
     return allSlides;
   }
 
@@ -1631,7 +1642,12 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
 
     if (data.type === 'opening') {
       div.classList.add('story-opening');
-      var bgHTML = data.bgImg ? '<div class="story-spot-img-wrap"><img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="filter:brightness(.6)"><div class="story-spot-gradient" style="background:radial-gradient(ellipse at 50% 50%,rgba(10,9,8,.25),rgba(10,9,8,.6))"></div></div>' : '';
+      var bgHTML = '';
+      if (data.bgImg) {
+        bgHTML = '<div class="story-spot-img-wrap" style="background-image:url(\'' + data.bgImg + '\')">' +
+          '<img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="object-position:center center">' +
+          '<div class="story-slide-overlay"></div></div>';
+      }
       var petals = '<div class="story-opening-petals">';
       for (var i = 0; i < 8; i++) {
         var left = Math.random() * 100;
@@ -1641,49 +1657,67 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
       }
       petals += '</div>';
       div.innerHTML = bgHTML + petals +
-        '<div style="position:relative;z-index:1">' +
+        '<div style="position:relative;z-index:5">' +
         '<div class="story-opening-label">My Travel Journal</div>' +
         '<div class="story-opening-title">京都</div>' +
-        '<div class="story-opening-line"></div>' +
         '<div class="story-opening-dates">2026.3.14 — 3.16</div>' +
         '<div class="story-opening-meta">2泊3日の旅</div>' +
         '</div>';
     }
-    else if (data.type === 'route') {
-      div.classList.add('story-route');
-      var routeBg = data.bgImg ? '<div class="story-spot-img-wrap"><img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="filter:brightness(.5) saturate(.75)"><div class="story-spot-gradient" style="background:rgba(10,9,8,.35)"></div></div>' : '';
-      div.innerHTML = routeBg +
-        '<div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1">' +
-        '<div class="story-route-title">travel route</div>' +
-        '<svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-        '<defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F2A7B3"/><stop offset="100%" stop-color="#C4A265"/></linearGradient></defs>' +
-        '<!-- Japan outline hint -->' +
-        '<ellipse cx="150" cy="100" rx="130" ry="75" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>' +
-        '<!-- Route -->' +
-        '<path id="routePath" d="M 195 72 Q 190 78 178 82 Q 150 95 110 108 Q 85 118 68 128" stroke="url(#rg)" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="300" stroke-dashoffset="300"><animate attributeName="stroke-dashoffset" from="300" to="0" dur="2s" begin="0.5s" fill="freeze"/></path>' +
-        '<!-- Dots -->' +
-        '<g opacity="0"><circle cx="195" cy="72" r="4" fill="#F2A7B3"/><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.3s" fill="freeze"/></g>' +
-        '<g opacity="0"><circle cx="178" cy="82" r="3.5" fill="#D4748A"/><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="1.2s" fill="freeze"/></g>' +
-        '<g opacity="0"><circle cx="68" cy="128" r="5" fill="#C4A265"/><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="2.3s" fill="freeze"/></g>' +
-        '<!-- Labels -->' +
-        '<g opacity="0" font-family="Zen Kaku Gothic New,sans-serif"><text x="195" y="64" fill="rgba(255,255,255,.6)" font-size="9" text-anchor="middle">熊谷</text><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.3s" fill="freeze"/></g>' +
-        '<g opacity="0" font-family="Zen Kaku Gothic New,sans-serif"><text x="178" y="75" fill="rgba(255,255,255,.6)" font-size="9" text-anchor="middle">東京</text><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="1.2s" fill="freeze"/></g>' +
-        '<g opacity="0" font-family="Zen Old Mincho,serif"><text x="68" y="148" fill="#FBF8F5" font-size="14" text-anchor="middle" font-weight="700">京都</text><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="2.3s" fill="freeze"/></g>' +
-        '<!-- Train icon -->' +
-        '<g opacity="0"><text x="135" y="93" font-size="14">🚅</text>' +
-        '<animateMotion path="M60,-15 Q-25,5 -65,22" dur="1.8s" begin="0.6s" fill="freeze"/>' +
-        '<animate attributeName="opacity" values="0;1;1;1" keyTimes="0;0.05;0.9;1" dur="1.8s" begin="0.6s" fill="freeze"/></g>' +
-        '</svg>' +
-        '<div class="story-route-stats">' +
-        '<div class="story-route-stat"><div class="story-route-stat-num">9</div><div class="story-route-stat-label">スポット</div></div>' +
-        '<div class="story-route-stat"><div class="story-route-stat-num">2泊3日</div><div class="story-route-stat-label">旅程</div></div>' +
-        '</div></div>';
+    else if (data.type === 'transit') {
+      div.classList.add('story-transit');
+      if (data.img1 && data.img2) {
+        // Two photos: split screen
+        div.innerHTML =
+          '<div class="story-transit-dual">' +
+            '<div class="story-transit-half">' +
+              '<div class="story-transit-half-bg" style="background-image:url(\'' + data.img1 + '\')"></div>' +
+              '<img class="story-transit-half-img" src="' + data.img1 + '" alt="">' +
+              '<div class="story-transit-half-gradient"></div>' +
+              '<div class="story-transit-half-label">' + data.img1label + '</div>' +
+            '</div>' +
+            '<div class="story-transit-divider">' +
+              '<span class="story-transit-divider-text">' + data.label + '</span>' +
+            '</div>' +
+            '<div class="story-transit-half">' +
+              '<div class="story-transit-half-bg" style="background-image:url(\'' + data.img2 + '\')"></div>' +
+              '<img class="story-transit-half-img" src="' + data.img2 + '" alt="">' +
+              '<div class="story-transit-half-gradient"></div>' +
+              '<div class="story-transit-half-label">' + data.img2label + '</div>' +
+            '</div>' +
+          '</div>';
+      } else if (data.img1) {
+        // Single photo: same layout as spot
+        div.classList.add('story-transit-single');
+        div.innerHTML =
+          '<div class="story-spot-img-wrap" style="background-image:url(\'' + data.img1 + '\')">' +
+            '<img class="story-spot-img" src="' + data.img1 + '" alt="" onload="this.classList.add(\'loaded\')">' +
+            '<div class="story-spot-gradient"></div>' +
+          '</div>' +
+          '<div class="story-spot-content">' +
+            '<div class="story-spot-category" style="color:var(--transport)">移動</div>' +
+            '<div class="story-spot-name">' + data.label + '</div>' +
+          '</div>';
+      } else {
+        // No photo
+        div.innerHTML =
+          '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><span style="font-size:5rem;opacity:.15">' + (data.emoji || '🚅') + '</span></div>' +
+          '<div class="story-spot-content">' +
+            '<div class="story-spot-category" style="color:var(--transport)">移動</div>' +
+            '<div class="story-spot-name">' + data.label + '</div>' +
+          '</div>';
+      }
     }
     else if (data.type === 'daybreak') {
       div.classList.add('story-daybreak');
-      var dayBg = data.bgImg ? '<div class="story-spot-img-wrap"><img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="filter:brightness(.5) saturate(.8)"><div class="story-spot-gradient" style="background:radial-gradient(ellipse at 50% 50%,rgba(10,9,8,.3),rgba(10,9,8,.6))"></div></div>' : '';
+      var dayBg = '';
+      if (data.bgImg) {
+        dayBg = '<div class="story-spot-img-wrap" style="background-image:url(\'' + data.bgImg + '\')">' +
+          '<img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="object-position:center center">' +
+          '<div class="story-slide-overlay"></div></div>';
+      }
       div.innerHTML = dayBg +
-        '<div style="position:relative;z-index:1">' +
+        '<div style="position:relative;z-index:5">' +
         '<div class="story-daybreak-num">' + data.num + '</div>' +
         '<div class="story-daybreak-date">' + data.date + '</div>' +
         '<div class="story-daybreak-weekday">' + data.weekday + '</div>' +
@@ -1693,8 +1727,7 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
       div.classList.add('story-spot');
       var imgHTML = '';
       if (data.img) {
-        imgHTML = '<div class="story-spot-img-wrap">' +
-          '<img class="story-spot-img-bg" src="' + data.img + '" alt="">' +
+        imgHTML = '<div class="story-spot-img-wrap" style="background-image:url(\'' + data.img + '\')">' +
           '<img class="story-spot-img" src="' + data.img + '" alt="" onload="this.classList.add(\'loaded\')">' +
           '<div class="story-spot-gradient"></div></div>';
       } else {
@@ -1713,7 +1746,12 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
     }
     else if (data.type === 'ending') {
       div.classList.add('story-ending');
-      var endBg = data.bgImg ? '<div class="story-spot-img-wrap"><img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="filter:brightness(.5) saturate(.7)"><div class="story-spot-gradient" style="background:radial-gradient(ellipse at 50% 50%,rgba(10,9,8,.3),rgba(10,9,8,.65))"></div></div>' : '';
+      var endBg = '';
+      if (data.bgImg) {
+        endBg = '<div class="story-spot-img-wrap" style="background-image:url(\'' + data.bgImg + '\')">' +
+          '<img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="object-position:center center">' +
+          '<div class="story-slide-overlay"></div></div>';
+      }
       // Find best spot
       var bestName = '';
       var bestStars = 0;
@@ -1730,7 +1768,7 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
       var avgStars = ratedCount > 0 ? (totalStars / ratedCount).toFixed(1) : '—';
       var spotCount = slides.filter(function(s) { return s.type === 'spot'; }).length;
       div.innerHTML = endBg +
-        '<div style="position:relative;z-index:1">' +
+        '<div style="position:relative;z-index:5">' +
         '<div class="story-ending-stats">' +
         '<div><div class="story-ending-stat-num">' + spotCount + '</div><div class="story-ending-stat-label">スポット</div></div>' +
         '<div><div class="story-ending-stat-num">2泊3日</div><div class="story-ending-stat-label">旅 程</div></div>' +
@@ -1750,13 +1788,21 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
     return div;
   }
 
+  var slideCache = {}; // cache of built slide elements by index
+
+  function getSlideEl(index) {
+    if (slideCache[index]) return slideCache[index];
+    var el = buildSlide(slides[index], index);
+    slideCache[index] = el;
+    return el;
+  }
+
   function buildStory() {
     slides = extractSpots();
     container.innerHTML = '';
     progressBar.innerHTML = '';
+    slideCache = {};
     slides.forEach(function(data, i) {
-      var slide = buildSlide(data, i);
-      container.appendChild(slide);
       var seg = document.createElement('div');
       seg.className = 'story-progress-seg';
       seg.innerHTML = '<div class="story-progress-fill"></div>';
@@ -1770,18 +1816,30 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
       return;
     }
     clearTimeout(timer);
-    var allSlides = container.querySelectorAll('.story-slide');
-    var allFills = progressBar.querySelectorAll('.story-progress-fill');
     var prev = currentSlide;
     currentSlide = index;
 
-    allSlides.forEach(function(s, i) {
-      s.className = 'story-slide';
-      if (i === index) s.classList.add('active');
-      else if (i === prev && prev < index) s.classList.add('exit-left');
-      else if (i === prev && prev > index) s.classList.add('enter-right');
+    // Only keep slides [index-1, index, index+1] in DOM
+    // Remove all current children first
+    while (container.firstChild) container.removeChild(container.firstChild);
+
+    // Free cache entries far from current to save memory
+    Object.keys(slideCache).forEach(function(k) {
+      var ki = parseInt(k);
+      if (ki < index - 2 || ki > index + 2) delete slideCache[k];
     });
 
+    // Add nearby slides
+    for (var si = Math.max(0, index - 1); si <= Math.min(slides.length - 1, index + 1); si++) {
+      var el = getSlideEl(si);
+      el.className = 'story-slide';
+      if (si === index) el.classList.add('active');
+      else if (si === prev && prev < index) el.classList.add('exit-left');
+      else if (si === prev && prev > index) el.classList.add('enter-right');
+      container.appendChild(el);
+    }
+
+    var allFills = progressBar.querySelectorAll('.story-progress-fill');
     allFills.forEach(function(f, i) {
       f.classList.remove('active', 'done');
       f.style.width = '';
@@ -1823,6 +1881,8 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
     clearTimeout(timer);
     overlay.classList.remove('active', 'paused');
     document.body.style.overflow = '';
+    container.innerHTML = '';
+    slideCache = {};
   }
 
   // Controls — time-locked until 2026-03-16 15:00 JST
@@ -2209,7 +2269,7 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
   }
 
   // Also add photo slots to specific transport cards only
-  var transportPhotoNames = ['東京駅出発', '京都駅着', '京都駅出発'];
+  var transportPhotoNames = ['東京駅出発', '京都駅着'];
   var transportCards = document.querySelectorAll('.timeline-card.transport');
   transportCards.forEach(function(card) {
     var titleEl = card.querySelector('.card-title');
