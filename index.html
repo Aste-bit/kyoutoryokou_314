@@ -280,9 +280,190 @@ body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--warm-white);c
 @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @media(max-width:640px){:root{--tl-left:20px;--tl-dot-left:16px;--tl-content-left:52px;--tl-time-width:32px}.nav-brand{display:none}.nav-day-btn{padding:.9rem .7rem;font-size:.78rem}.nav-actions{gap:.25rem}.nav-icon-btn{width:30px;height:30px;font-size:.8rem}.day-date{font-size:1.6rem}.timeline-time{font-size:.7rem}.timeline-card{padding:.9rem 1rem}.card-title{font-size:.92rem}.card-detail{word-break:break-word}.info-card,.checklist-card,.memo-card,.weather-card,.emergency-card,.countdown-card,.station-card,.album-card{padding:1.5rem}.checklist-columns{grid-template-columns:1fr}.modal{padding:1.5rem}.hero-meta{gap:1rem}.weather-days{gap:.5rem}.emergency-grid{grid-template-columns:1fr}.card-photo-wrap{height:110px}.weather-history-body{grid-template-columns:1fr}.station-grid{grid-template-columns:1fr}.album-grid{gap:.4rem}.add-item-btn{flex-shrink:0;padding:.4rem .6rem;font-size:.75rem}}
 @media print{.day-nav,.scroll-hint,.sakura-container,.memo-card,.modal-overlay,.checklist-card,.countdown-card,.weather-card,.emergency-card,.station-card,.back-to-top,.travel-progress,.album-card,.help-btn{display:none!important}.hero{min-height:auto;padding:3rem 2rem;page-break-after:always}.timeline-item{opacity:1!important;transform:none!important}.timeline-card{box-shadow:none;border:1px solid #e0d8d0}.timeline-card:hover{transform:none}body{background:#fff}}
+/* === Card Review UI === */
+.card-review{margin-top:.5rem;border-top:1px dashed rgba(128,128,128,.12);padding-top:.5rem}
+.card-review-row{display:flex;align-items:center;gap:.3rem}
+.card-review-stars{display:flex;gap:0}
+.card-review-star{background:none;border:none;font-size:1.05rem;cursor:pointer;padding:1px 2px;color:rgba(128,128,128,.2);transition:color .15s,transform .15s;line-height:1}
+.card-review-star:hover{transform:scale(1.2)}
+.card-review-star.filled{color:var(--gold)}
+.card-review-input{width:100%;border:none;border-bottom:1px dashed rgba(128,128,128,.15);background:transparent;font-family:'Zen Kaku Gothic New',sans-serif;font-size:.78rem;color:var(--ink);padding:.35rem 0;margin-top:.3rem;outline:none;transition:border-color .3s}
+.card-review-input:focus{border-color:var(--sakura)}
+.card-review-input::placeholder{color:var(--ink-faint);font-style:italic;font-size:.72rem}
+.card-review-saved{font-size:.58rem;color:var(--sakura);opacity:0;transition:opacity .3s;margin-left:auto;white-space:nowrap}
+.card-review-saved.show{opacity:1}
+.card-review-label{font-size:.65rem;color:var(--ink-faint);letter-spacing:.05em}
+/* Photo add overlay */
+.card-photo-add{position:absolute;bottom:6px;right:6px;width:30px;height:30px;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:1.5px solid rgba(255,255,255,.2);border-radius:50%;color:#fff;font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;transition:all .2s;opacity:.7}
+.card-photo-add:hover{opacity:1;transform:scale(1.1);background:rgba(0,0,0,.65)}
+.card-photo-add input[type="file"]{display:none}
+.card-photo-user{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;border-radius:8px}
+.card-photo-remove{position:absolute;top:6px;right:6px;width:22px;height:22px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;font-size:.6rem;cursor:pointer;z-index:4;display:none;align-items:center;justify-content:center}
+.card-photo-wrap:hover .card-photo-remove.has-photo{display:flex}
+/* Cards without photo - add a mini slot */
+.card-photo-mini{position:relative;width:100%;height:60px;border-radius:8px;margin-top:.5rem;overflow:hidden;border:1.5px dashed rgba(128,128,128,.15);display:flex;align-items:center;justify-content:center;gap:.4rem;cursor:pointer;transition:all .2s;background:var(--warm-cream)}
+.card-photo-mini:hover{border-color:var(--sakura);background:rgba(242,167,179,.04)}
+.card-photo-mini-icon{font-size:.85rem;opacity:.35}
+.card-photo-mini-text{font-size:.65rem;color:var(--ink-faint)}
+.card-photo-mini input[type="file"]{display:none}
+.card-photo-mini img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:6px}
+.card-photo-mini .card-photo-remove{top:3px;right:3px;width:18px;height:18px;font-size:.55rem}
+.card-photo-mini:hover .card-photo-remove.has-photo{display:flex}
+/* Story lock */
+.story-play-btn.locked{opacity:.45!important;background:rgba(128,128,128,.25)!important;border-color:rgba(128,128,128,.15)!important;cursor:default!important}
+.story-play-btn.locked:hover{transform:none!important}
+/* Toast notification */
+.story-toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(20px);z-index:10001;background:rgba(44,36,32,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#FBF8F5;padding:.7rem 1.4rem;border-radius:12px;font-size:.78rem;opacity:0;transition:all .35s cubic-bezier(.22,1,.36,1);pointer-events:none;white-space:nowrap;font-family:'Zen Kaku Gothic New',sans-serif;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.story-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+[data-theme="dark"] .story-toast{background:rgba(60,55,50,.92)}
+/* === Story Mode === */
+.story-play-btn{background:linear-gradient(135deg,var(--sakura),var(--sakura-deep))!important;color:#fff!important;border-color:var(--sakura)!important;font-size:.7rem!important;letter-spacing:1px}
+.story-play-btn:hover{opacity:.85;transform:scale(1.05)}
+.story-overlay{position:fixed;inset:0;z-index:10000;background:#0a0908;display:none;flex-direction:column;touch-action:pan-y}
+.story-overlay.active{display:flex}
+.story-progress-bar{position:absolute;top:0;left:0;right:0;display:flex;gap:3px;padding:12px 10px 0;z-index:10}
+.story-progress-seg{flex:1;height:2.5px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden}
+.story-progress-fill{height:100%;background:#fff;width:0;border-radius:2px}
+.story-progress-fill.done{width:100%!important;transition:none}
+.story-progress-fill.active{transition:width linear}
+.story-close{position:absolute;top:18px;right:14px;z-index:12;background:none;border:none;color:rgba(255,255,255,.7);font-size:1.5rem;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
+.story-close:hover{background:rgba(255,255,255,.1)}
+.story-slide-container{flex:1;position:relative;overflow:hidden}
+.story-slide{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;transform:scale(1.02);transition:opacity .5s ease,transform .5s ease;pointer-events:none}
+.story-slide.active{opacity:1;transform:scale(1);pointer-events:auto}
+.story-slide.exit-left{opacity:0;transform:translateX(-8%) scale(.98)}
+.story-slide.enter-right{opacity:0;transform:translateX(8%) scale(.98)}
+/* Touch zones */
+.story-touch{position:absolute;inset:0;z-index:5;display:flex}
+.story-touch-left,.story-touch-right{flex:1}
+.story-touch-center{width:30%}
+/* Slide types */
+.story-opening{align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#1a1614,#2C2420 40%,#3D2E28)}
+.story-opening::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(242,167,179,.1),transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(196,162,101,.08),transparent 50%)}
+.story-opening-label{font-family:'Caveat',cursive;color:var(--sakura);font-size:1.1rem;letter-spacing:.2em;opacity:0;animation:storyFadeUp .8s .3s forwards}
+.story-opening-title{font-family:'Zen Old Mincho',serif;font-size:4rem;color:#FBF8F5;letter-spacing:.25em;margin:.3rem 0;opacity:0;animation:storyFadeUp .8s .5s forwards;position:relative;z-index:1}
+.story-opening-line{width:50px;height:1px;background:var(--sakura);margin:.8rem auto;opacity:0;animation:storyFadeUp .6s .7s forwards}
+.story-opening-dates{font-family:'Zen Kaku Gothic New',sans-serif;font-size:.9rem;color:var(--gold-light);letter-spacing:.25em;opacity:0;animation:storyFadeUp .8s .9s forwards}
+.story-opening-meta{font-size:.78rem;color:rgba(251,248,245,.4);margin-top:1.5rem;letter-spacing:.1em;opacity:0;animation:storyFadeUp .8s 1.1s forwards}
+.story-opening-petals{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.story-opening-petal{position:absolute;font-size:1.2rem;opacity:0;animation:storyPetalFall 4s linear infinite}
+@keyframes storyPetalFall{0%{opacity:0;transform:translateY(-20px) rotate(0)}10%{opacity:.5}80%{opacity:.4}100%{opacity:0;transform:translateY(100vh) rotate(360deg)}}
+@keyframes storyFadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+/* Route slide */
+.story-route{align-items:center;justify-content:center;background:linear-gradient(160deg,#1a1614,#252220)}
+.story-route-title{font-family:'Caveat',cursive;color:var(--sakura);font-size:1rem;letter-spacing:.15em;margin-bottom:1.5rem;opacity:0;animation:storyFadeUp .6s .2s forwards}
+.story-route svg{max-width:320px;width:85%}
+.story-route-stats{display:flex;gap:2rem;margin-top:2rem;opacity:0;animation:storyFadeUp .6s 1.5s forwards}
+.story-route-stat{text-align:center}
+.story-route-stat-num{font-family:'Zen Old Mincho',serif;font-size:1.6rem;color:#FBF8F5;font-weight:700}
+.story-route-stat-label{font-size:.65rem;color:rgba(251,248,245,.4);letter-spacing:.1em;margin-top:.15rem}
+/* Day break slide */
+.story-daybreak{align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#1a1614,#1e1c1a)}
+.story-daybreak-num{font-family:'Caveat',cursive;color:var(--sakura);font-size:1rem;letter-spacing:.2em;opacity:0;animation:storyFadeUp .6s .2s forwards}
+.story-daybreak-date{font-family:'Zen Old Mincho',serif;font-size:2.8rem;color:#FBF8F5;letter-spacing:.15em;margin:.3rem 0;opacity:0;animation:storyFadeUp .7s .4s forwards}
+.story-daybreak-weekday{font-size:.85rem;color:rgba(251,248,245,.35);letter-spacing:.15em;opacity:0;animation:storyFadeUp .6s .6s forwards}
+/* Spot slide */
+.story-spot{position:relative;background:#0a0908}
+.story-spot-img-wrap{position:absolute;inset:0}
+.story-spot-img-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5) saturate(.7);transform:scale(1.1)}
+.story-spot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center 35%;opacity:0;transition:opacity .8s;animation:storyKenBurns 8s ease-out forwards;z-index:1}
+.story-spot-img.loaded{opacity:1}
+@keyframes storyKenBurns{from{transform:scale(1.08)}to{transform:scale(1)}}
+.story-spot-gradient{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(10,9,8,.95) 0%,rgba(10,9,8,.5) 25%,rgba(10,9,8,0) 48%,rgba(10,9,8,.05) 100%)}
+.story-spot-content{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.5rem 3rem;z-index:3}
+.story-spot-category{display:inline-block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.2rem .6rem;border-radius:3px;margin-bottom:.6rem;font-weight:600}
+.story-spot-category.sight{background:rgba(123,143,78,.25);color:#c8d8a0}
+.story-spot-category.food{background:rgba(212,135,77,.25);color:#e8b88a}
+.story-spot-name{font-family:'Zen Old Mincho',serif;font-size:1.8rem;color:#FBF8F5;letter-spacing:.08em;line-height:1.3;margin-bottom:.5rem;opacity:0;animation:storyFadeUp .6s .15s forwards}
+.story-spot-time{font-size:.72rem;color:rgba(251,248,245,.4);letter-spacing:.08em;margin-bottom:.6rem;opacity:0;animation:storyFadeUp .5s .3s forwards}
+.story-spot-stars{display:flex;gap:2px;margin-bottom:.5rem;opacity:0;animation:storyFadeUp .5s .4s forwards}
+.story-spot-star{font-size:1rem}
+.story-spot-comment{font-size:.88rem;color:rgba(251,248,245,.75);line-height:1.7;font-style:italic;opacity:0;animation:storyFadeUp .6s .5s forwards;max-width:85%}
+/* Ending slide */
+.story-ending{align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#1a1614,#2C2420);position:relative;overflow:hidden}
+.story-ending::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(242,167,179,.08),transparent 70%)}
+.story-ending-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2.5rem;margin-bottom:2rem;opacity:0;animation:storyFadeUp .7s .3s forwards}
+.story-ending-stat-num{font-family:'Zen Old Mincho',serif;font-size:2.2rem;color:#FBF8F5;font-weight:700;line-height:1}
+.story-ending-stat-label{font-size:.68rem;color:rgba(251,248,245,.35);letter-spacing:.1em;margin-top:.25rem}
+.story-ending-best{margin:1.5rem 0;padding:1rem 1.5rem;background:rgba(255,255,255,.04);border-radius:12px;border:1px solid rgba(255,255,255,.06);opacity:0;animation:storyFadeUp .7s .8s forwards}
+.story-ending-best-label{font-size:.65rem;color:var(--sakura);letter-spacing:.15em;margin-bottom:.4rem}
+.story-ending-best-name{font-family:'Zen Old Mincho',serif;font-size:1.3rem;color:#FBF8F5;letter-spacing:.1em}
+.story-ending-best-stars{display:flex;justify-content:center;gap:2px;margin-top:.3rem}
+.story-ending-title{font-family:'Zen Old Mincho',serif;font-size:2rem;color:#FBF8F5;letter-spacing:.2em;margin-top:1.5rem;opacity:0;animation:storyFadeUp .7s 1.2s forwards}
+.story-ending-sub{font-size:.8rem;color:rgba(251,248,245,.3);letter-spacing:.15em;margin-top:.4rem;opacity:0;animation:storyFadeUp .6s 1.4s forwards}
+.story-ending-petal{font-size:1.8rem;margin-top:1.5rem;opacity:0;animation:storyFadeUp .5s 1.6s forwards}
+/* Pause indicator */
+.story-paused-indicator{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:15;font-size:2.5rem;color:rgba(255,255,255,.6);opacity:0;transition:opacity .2s;pointer-events:none}
+.story-overlay.paused .story-paused-indicator{opacity:1}
+.story-overlay.paused .story-progress-fill.active{animation-play-state:paused!important}
+/* Story landscape mode */
+@media (orientation:landscape) and (max-height:500px){
+.story-progress-bar{padding:6px 10px 0}
+.story-close{top:8px;right:10px;width:30px;height:30px;font-size:1.2rem}
+/* Opening */
+.story-opening-title{font-size:2.5rem}
+.story-opening-label{font-size:.9rem}
+.story-opening-dates{font-size:.8rem}
+.story-opening-meta{margin-top:.6rem}
+.story-opening-line{margin:.4rem auto}
+/* Route */
+.story-route svg{max-width:250px;width:60%}
+.story-route-title{margin-bottom:.6rem;font-size:.85rem}
+.story-route-stats{margin-top:.8rem;gap:1.5rem}
+.story-route-stat-num{font-size:1.2rem}
+/* Daybreak */
+.story-daybreak-date{font-size:2rem}
+.story-daybreak-num{font-size:.85rem}
+/* Spot — side-by-side layout */
+.story-spot-gradient{background:linear-gradient(to right,rgba(10,9,8,.97) 0%,rgba(10,9,8,.6) 30%,rgba(10,9,8,.05) 55%,rgba(10,9,8,.15) 100%)}
+.story-spot-content{inset:0;padding:2.5rem 1.2rem 1.2rem;display:flex;flex-direction:column;justify-content:flex-end;max-width:55%}
+.story-spot-img{object-position:center center}
+.story-spot-name{font-size:1.3rem;margin-bottom:.3rem}
+.story-spot-time{font-size:.65rem;margin-bottom:.3rem}
+.story-spot-stars .story-spot-star{font-size:.85rem}
+.story-spot-comment{font-size:.75rem;line-height:1.5;max-width:100%}
+.story-spot-category{font-size:.55rem;margin-bottom:.3rem}
+/* Ending */
+.story-ending-stats{gap:.8rem 2rem}
+.story-ending-stat-num{font-size:1.6rem}
+.story-ending-stat-label{font-size:.6rem}
+.story-ending-best{margin:.6rem 0;padding:.6rem 1.2rem}
+.story-ending-best-name{font-size:1rem}
+.story-ending-title{font-size:1.5rem;margin-top:.6rem}
+.story-ending-sub{font-size:.7rem}
+.story-ending-petal{margin-top:.5rem;font-size:1.2rem}
+}
+/* Wider landscape (tablets, desktop) */
+@media (orientation:landscape) and (min-height:501px){
+.story-spot-content{max-width:50%;padding:2rem 2rem 3rem}
+.story-spot-gradient{background:linear-gradient(to right,rgba(10,9,8,.9) 0%,rgba(10,9,8,.45) 35%,rgba(10,9,8,.05) 60%,rgba(10,9,8,.15) 100%)}
+.story-spot-img{object-position:center center}
+}
 </style>
 </head>
 <body>
+<script>
+// Service Worker registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js').then(function(reg) {
+      // Check for updates every 30 minutes
+      setInterval(function() { reg.update(); }, 1800000);
+      // When a new SW is waiting, activate it immediately
+      reg.addEventListener('updatefound', function() {
+        var newWorker = reg.installing;
+        if (newWorker) {
+          newWorker.addEventListener('statechange', function() {
+            if (newWorker.state === 'activated') {
+              console.log('Service Worker updated');
+            }
+          });
+        }
+      });
+    }).catch(function(err) { console.warn('SW registration failed:', err); });
+  });
+}
+</script>
 <div class="sakura-container" id="sakuraContainer"></div>
 
 <section class="hero">
@@ -309,6 +490,7 @@ body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--warm-white);c
       <button class="nav-day-btn" data-target="day3" lang="en">Day 3</button>
     </div>
     <div class="nav-actions">
+      <button class="nav-icon-btn story-play-btn" id="storyBtn" title="ストーリーモード">▶</button>
       <button class="nav-icon-btn" id="shareBtn" title="共有">📤</button>
       <button class="nav-icon-btn" id="qrBtn" title="QRコード共有">📱</button>
       <button class="nav-icon-btn" id="costBtn" title="費用一覧">💰</button>
@@ -460,7 +642,7 @@ body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--warm-white);c
   <div class="timeline" data-day="2026-03-14">
     <div class="timeline-item" data-time="06:57"><div class="timeline-time">06:57</div><div class="timeline-dot transport"></div><span class="now-label">📍 NOW</span><div class="timeline-card transport"><div class="card-header"><div class="card-title">熊谷駅を出発</div><span class="card-category transport">移動</span></div><div class="card-detail">JRたにがわ400号 11・12番線<br>自由席<br>7:36着 東京駅 20番線</div><div class="card-bottom"><a href="https://maps.google.com/maps?q=熊谷駅" target="_blank" rel="noopener" class="card-link">📍 MAP</a><a href="https://www.jreast-timetable.jp/timetable/list1039.html" target="_blank" rel="noopener" class="card-link site-link">🕐 時刻表</a></div></div></div>
     <div class="duration-badge"><div class="duration-badge-inner">⏱ 約1時間</div></div>
-    <div class="timeline-item" data-time="08:00"><div class="timeline-time">08:00</div><div class="timeline-dot transport"></div><span class="now-label">📍 NOW</span><div class="timeline-card transport"><div class="card-header"><div class="card-title">東京駅を出発</div><span class="card-category transport">移動</span></div><div class="card-detail">JRのぞみ61号 19番線<br>13号車1番ABCDE席<br>舜と楽斗と集合</div>
+    <div class="timeline-item" data-time="08:00"><div class="timeline-time">08:00</div><div class="timeline-dot transport"></div><span class="now-label">📍 NOW</span><div class="timeline-card transport"><div class="card-header"><div class="card-title">東京駅出発</div><span class="card-category transport">移動</span></div><div class="card-detail">JRのぞみ61号 19番線<br>13号車1番ABCDE席<br>舜と楽斗と集合</div>
 <div class="seat-chart">
 <div class="seat-chart-title">🚅 座席表 — 13号車 1番ABCDE</div>
 <div class="seat-train-dir"><span>← 博多方面</span><span>東京方面 →</span></div>
@@ -1290,6 +1472,755 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
     }
   } catch(e) {}
 });
+</script>
+<!-- Story Mode Overlay -->
+<div class="story-overlay" id="storyOverlay">
+  <div class="story-progress-bar" id="storyProgressBar"></div>
+  <button class="story-close" id="storyClose">✕</button>
+  <div class="story-paused-indicator">❚❚</div>
+  <div class="story-slide-container" id="storySlideContainer"></div>
+  <div class="story-touch" id="storyTouch">
+    <div class="story-touch-left"></div>
+    <div class="story-touch-center"></div>
+    <div class="story-touch-right"></div>
+  </div>
+</div>
+
+<script>
+// ===== Story Mode =====
+(function() {
+  var overlay = document.getElementById('storyOverlay');
+  var container = document.getElementById('storySlideContainer');
+  var progressBar = document.getElementById('storyProgressBar');
+  var touch = document.getElementById('storyTouch');
+  var currentSlide = 0;
+  var slides = [];
+  var timer = null;
+  var isPaused = false;
+  var DURATION_OPENING = 5000;
+  var DURATION_ROUTE = 5500;
+  var DURATION_DAYBREAK = 3000;
+  var DURATION_SPOT = 4500;
+  var DURATION_ENDING = 7000;
+
+  // Read review data from localStorage (written by card review UI)
+  function getReview(name) {
+    try {
+      var key = 'kyoto-review-' + name;
+      var data = localStorage.getItem(key);
+      if (data) return JSON.parse(data);
+    } catch(e) {}
+    return { stars: 0, comment: '' };
+  }
+  // Read user photo from localStorage
+  function getUserPhoto(name) {
+    try {
+      return localStorage.getItem('kyoto-photo-' + name) || '';
+    } catch(e) { return ''; }
+  }
+
+  function extractSpots() {
+    var allSlides = [];
+    var allSpotPhotos = []; // {img, stars, name} for all spots
+
+    var days = [
+      { id: 'day1', num: 'Day 1', date: '3/14', weekday: '土曜日' },
+      { id: 'day2', num: 'Day 2', date: '3/15', weekday: '日曜日' },
+      { id: 'day3', num: 'Day 3', date: '3/16', weekday: '月曜日' }
+    ];
+
+    var dayData = []; // { spots: [], bestImg: '' }
+
+    days.forEach(function(day) {
+      var dd = { spots: [], bestImg: '', bestStars: -1 };
+      var section = document.getElementById(day.id);
+      if (!section) { dayData.push(dd); return; }
+      var items = section.querySelectorAll('.timeline-item');
+      items.forEach(function(item) {
+        var card = item.querySelector('.timeline-card');
+        if (!card) return;
+        var isSight = card.classList.contains('sight');
+        var isFood = card.classList.contains('food');
+        if (!isSight && !isFood) return;
+        var title = card.querySelector('.card-title');
+        if (!title) return;
+        var name = title.textContent.trim();
+        var time = item.querySelector('.timeline-time');
+        var timeText = time ? time.textContent.trim() : '';
+        var userPhoto = getUserPhoto(name);
+        var img = card.querySelector('.card-photo');
+        var imgSrc = userPhoto || (img ? img.src : '');
+        var placeholder = card.querySelector('.card-photo-placeholder');
+        var emoji = placeholder ? placeholder.textContent.trim() : '';
+        var cat = isSight ? 'sight' : 'food';
+        var catLabel = isSight ? '観光' : '食事';
+        var review = getReview(name);
+        var spotData = {
+          type: 'spot', name: name,
+          time: day.num + ' · ' + timeText,
+          img: imgSrc, emoji: emoji,
+          category: cat, categoryLabel: catLabel,
+          stars: review.stars, comment: review.comment,
+          duration: DURATION_SPOT
+        };
+        dd.spots.push(spotData);
+        if (imgSrc) {
+          allSpotPhotos.push({ img: imgSrc, stars: review.stars, name: name });
+          if (review.stars > dd.bestStars || (review.stars === dd.bestStars && userPhoto)) {
+            dd.bestStars = review.stars;
+            dd.bestImg = imgSrc;
+          }
+        }
+      });
+      // fallback: if no best by review, use first available photo
+      if (!dd.bestImg) {
+        for (var k = 0; k < dd.spots.length; k++) {
+          if (dd.spots[k].img) { dd.bestImg = dd.spots[k].img; break; }
+        }
+      }
+      dayData.push(dd);
+    });
+
+    // Find overall best photo (highest starred, prefer user photos)
+    var overallBest = '';
+    var overallBestStars = -1;
+    allSpotPhotos.forEach(function(p) {
+      if (p.stars > overallBestStars) { overallBestStars = p.stars; overallBest = p.img; }
+    });
+    if (!overallBest && allSpotPhotos.length) overallBest = allSpotPhotos[0].img;
+
+    // Try to find a transport/travel photo for route slide
+    var routePhoto = getUserPhoto('__travel_route__') || '';
+    // Also check transport cards for any user photo
+    if (!routePhoto) {
+      var transportNames = [];
+      document.querySelectorAll('.timeline-card.transport .card-title').forEach(function(t) { transportNames.push(t.textContent.trim()); });
+      for (var tn = 0; tn < transportNames.length; tn++) {
+        var tp = getUserPhoto(transportNames[tn]);
+        if (tp) { routePhoto = tp; break; }
+      }
+    }
+
+    // Build final slide array
+    allSlides.push({ type: 'opening', duration: DURATION_OPENING, bgImg: overallBest });
+    allSlides.push({ type: 'route', duration: DURATION_ROUTE, bgImg: routePhoto });
+
+    days.forEach(function(day, idx) {
+      allSlides.push({ type: 'daybreak', num: day.num, date: day.date, weekday: day.weekday, duration: DURATION_DAYBREAK, bgImg: dayData[idx].bestImg });
+      dayData[idx].spots.forEach(function(s) { allSlides.push(s); });
+    });
+
+    allSlides.push({ type: 'ending', duration: DURATION_ENDING, bgImg: overallBest });
+    return allSlides;
+  }
+
+  function starsHTML(n) {
+    var s = '';
+    for (var i = 0; i < 5; i++) {
+      s += '<span class="story-spot-star">' + (i < n ? '★' : '☆') + '</span>';
+    }
+    return s;
+  }
+
+  function buildSlide(data, index) {
+    var div = document.createElement('div');
+    div.className = 'story-slide';
+    div.dataset.index = index;
+
+    if (data.type === 'opening') {
+      div.classList.add('story-opening');
+      var bgHTML = data.bgImg ? '<div class="story-spot-img-wrap"><img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="filter:brightness(.6)"><div class="story-spot-gradient" style="background:radial-gradient(ellipse at 50% 50%,rgba(10,9,8,.25),rgba(10,9,8,.6))"></div></div>' : '';
+      var petals = '<div class="story-opening-petals">';
+      for (var i = 0; i < 8; i++) {
+        var left = Math.random() * 100;
+        var delay = Math.random() * 3;
+        var dur = 3 + Math.random() * 2;
+        petals += '<div class="story-opening-petal" style="left:' + left + '%;animation-delay:' + delay + 's;animation-duration:' + dur + 's">🌸</div>';
+      }
+      petals += '</div>';
+      div.innerHTML = bgHTML + petals +
+        '<div style="position:relative;z-index:1">' +
+        '<div class="story-opening-label">My Travel Journal</div>' +
+        '<div class="story-opening-title">京都</div>' +
+        '<div class="story-opening-line"></div>' +
+        '<div class="story-opening-dates">2026.3.14 — 3.16</div>' +
+        '<div class="story-opening-meta">2泊3日の旅</div>' +
+        '</div>';
+    }
+    else if (data.type === 'route') {
+      div.classList.add('story-route');
+      var routeBg = data.bgImg ? '<div class="story-spot-img-wrap"><img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="filter:brightness(.5) saturate(.75)"><div class="story-spot-gradient" style="background:rgba(10,9,8,.35)"></div></div>' : '';
+      div.innerHTML = routeBg +
+        '<div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1">' +
+        '<div class="story-route-title">travel route</div>' +
+        '<svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F2A7B3"/><stop offset="100%" stop-color="#C4A265"/></linearGradient></defs>' +
+        '<!-- Japan outline hint -->' +
+        '<ellipse cx="150" cy="100" rx="130" ry="75" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>' +
+        '<!-- Route -->' +
+        '<path id="routePath" d="M 195 72 Q 190 78 178 82 Q 150 95 110 108 Q 85 118 68 128" stroke="url(#rg)" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="300" stroke-dashoffset="300"><animate attributeName="stroke-dashoffset" from="300" to="0" dur="2s" begin="0.5s" fill="freeze"/></path>' +
+        '<!-- Dots -->' +
+        '<g opacity="0"><circle cx="195" cy="72" r="4" fill="#F2A7B3"/><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.3s" fill="freeze"/></g>' +
+        '<g opacity="0"><circle cx="178" cy="82" r="3.5" fill="#D4748A"/><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="1.2s" fill="freeze"/></g>' +
+        '<g opacity="0"><circle cx="68" cy="128" r="5" fill="#C4A265"/><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="2.3s" fill="freeze"/></g>' +
+        '<!-- Labels -->' +
+        '<g opacity="0" font-family="Zen Kaku Gothic New,sans-serif"><text x="195" y="64" fill="rgba(255,255,255,.6)" font-size="9" text-anchor="middle">熊谷</text><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.3s" fill="freeze"/></g>' +
+        '<g opacity="0" font-family="Zen Kaku Gothic New,sans-serif"><text x="178" y="75" fill="rgba(255,255,255,.6)" font-size="9" text-anchor="middle">東京</text><animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="1.2s" fill="freeze"/></g>' +
+        '<g opacity="0" font-family="Zen Old Mincho,serif"><text x="68" y="148" fill="#FBF8F5" font-size="14" text-anchor="middle" font-weight="700">京都</text><animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="2.3s" fill="freeze"/></g>' +
+        '<!-- Train icon -->' +
+        '<g opacity="0"><text x="135" y="93" font-size="14">🚅</text>' +
+        '<animateMotion path="M60,-15 Q-25,5 -65,22" dur="1.8s" begin="0.6s" fill="freeze"/>' +
+        '<animate attributeName="opacity" values="0;1;1;1" keyTimes="0;0.05;0.9;1" dur="1.8s" begin="0.6s" fill="freeze"/></g>' +
+        '</svg>' +
+        '<div class="story-route-stats">' +
+        '<div class="story-route-stat"><div class="story-route-stat-num">9</div><div class="story-route-stat-label">スポット</div></div>' +
+        '<div class="story-route-stat"><div class="story-route-stat-num">2泊3日</div><div class="story-route-stat-label">旅程</div></div>' +
+        '</div></div>';
+    }
+    else if (data.type === 'daybreak') {
+      div.classList.add('story-daybreak');
+      var dayBg = data.bgImg ? '<div class="story-spot-img-wrap"><img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="filter:brightness(.5) saturate(.8)"><div class="story-spot-gradient" style="background:radial-gradient(ellipse at 50% 50%,rgba(10,9,8,.3),rgba(10,9,8,.6))"></div></div>' : '';
+      div.innerHTML = dayBg +
+        '<div style="position:relative;z-index:1">' +
+        '<div class="story-daybreak-num">' + data.num + '</div>' +
+        '<div class="story-daybreak-date">' + data.date + '</div>' +
+        '<div class="story-daybreak-weekday">' + data.weekday + '</div>' +
+        '</div>';
+    }
+    else if (data.type === 'spot') {
+      div.classList.add('story-spot');
+      var imgHTML = '';
+      if (data.img) {
+        imgHTML = '<div class="story-spot-img-wrap">' +
+          '<img class="story-spot-img-bg" src="' + data.img + '" alt="">' +
+          '<img class="story-spot-img" src="' + data.img + '" alt="" onload="this.classList.add(\'loaded\')">' +
+          '<div class="story-spot-gradient"></div></div>';
+      } else {
+        imgHTML = '<div class="story-spot-img-wrap" style="background:#1a1614;display:flex;align-items:center;justify-content:center"><span style="font-size:5rem;opacity:.15">' + (data.emoji || '📍') + '</span><div class="story-spot-gradient"></div></div>';
+      }
+      var starsStr = data.stars > 0 ? '<div class="story-spot-stars">' + starsHTML(data.stars) + '</div>' : '';
+      var commentStr = data.comment ? '<div class="story-spot-comment">' + data.comment + '</div>' : '';
+      div.innerHTML = imgHTML +
+        '<div class="story-spot-content">' +
+        '<div class="story-spot-category ' + data.category + '">' + data.categoryLabel + '</div>' +
+        '<div class="story-spot-name">' + data.name + '</div>' +
+        '<div class="story-spot-time">' + data.time + '</div>' +
+        starsStr +
+        commentStr +
+        '</div>';
+    }
+    else if (data.type === 'ending') {
+      div.classList.add('story-ending');
+      var endBg = data.bgImg ? '<div class="story-spot-img-wrap"><img class="story-spot-img" src="' + data.bgImg + '" alt="" onload="this.classList.add(\'loaded\')" style="filter:brightness(.5) saturate(.7)"><div class="story-spot-gradient" style="background:radial-gradient(ellipse at 50% 50%,rgba(10,9,8,.3),rgba(10,9,8,.65))"></div></div>' : '';
+      // Find best spot
+      var bestName = '';
+      var bestStars = 0;
+      slides.forEach(function(s) {
+        if (s.type === 'spot' && s.stars >= bestStars) {
+          bestStars = s.stars;
+          bestName = s.name;
+        }
+      });
+      if (!bestName) bestName = '—';
+      // Calculate average rating
+      var totalStars = 0, ratedCount = 0;
+      slides.forEach(function(s) { if (s.type === 'spot' && s.stars > 0) { totalStars += s.stars; ratedCount++; } });
+      var avgStars = ratedCount > 0 ? (totalStars / ratedCount).toFixed(1) : '—';
+      var spotCount = slides.filter(function(s) { return s.type === 'spot'; }).length;
+      div.innerHTML = endBg +
+        '<div style="position:relative;z-index:1">' +
+        '<div class="story-ending-stats">' +
+        '<div><div class="story-ending-stat-num">' + spotCount + '</div><div class="story-ending-stat-label">スポット</div></div>' +
+        '<div><div class="story-ending-stat-num">2泊3日</div><div class="story-ending-stat-label">旅 程</div></div>' +
+        '<div><div class="story-ending-stat-num">¥10,130</div><div class="story-ending-stat-label">観光費用</div></div>' +
+        '<div><div class="story-ending-stat-num">★ ' + avgStars + '</div><div class="story-ending-stat-label">平均評価</div></div>' +
+        '</div>' +
+        '<div class="story-ending-best">' +
+        '<div class="story-ending-best-label">BEST SPOT</div>' +
+        '<div class="story-ending-best-name">' + bestName + '</div>' +
+        '<div class="story-ending-best-stars">' + starsHTML(bestStars) + '</div>' +
+        '</div>' +
+        '<div class="story-ending-title">京都 2026</div>' +
+        '<div class="story-ending-sub">良い旅でした</div>' +
+        '<div class="story-ending-petal">🌸</div>' +
+        '</div>';
+    }
+    return div;
+  }
+
+  function buildStory() {
+    slides = extractSpots();
+    container.innerHTML = '';
+    progressBar.innerHTML = '';
+    slides.forEach(function(data, i) {
+      var slide = buildSlide(data, i);
+      container.appendChild(slide);
+      var seg = document.createElement('div');
+      seg.className = 'story-progress-seg';
+      seg.innerHTML = '<div class="story-progress-fill"></div>';
+      progressBar.appendChild(seg);
+    });
+  }
+
+  function goTo(index) {
+    if (index < 0 || index >= slides.length) {
+      closeStory();
+      return;
+    }
+    clearTimeout(timer);
+    var allSlides = container.querySelectorAll('.story-slide');
+    var allFills = progressBar.querySelectorAll('.story-progress-fill');
+    var prev = currentSlide;
+    currentSlide = index;
+
+    allSlides.forEach(function(s, i) {
+      s.className = 'story-slide';
+      if (i === index) s.classList.add('active');
+      else if (i === prev && prev < index) s.classList.add('exit-left');
+      else if (i === prev && prev > index) s.classList.add('enter-right');
+    });
+
+    allFills.forEach(function(f, i) {
+      f.classList.remove('active', 'done');
+      f.style.width = '';
+      f.style.transitionDuration = '';
+      if (i < index) {
+        f.classList.add('done');
+        f.style.width = '100%';
+      } else if (i === index) {
+        f.classList.add('active');
+        var dur = slides[i].duration;
+        // Force reflow
+        void f.offsetWidth;
+        f.style.transitionDuration = dur + 'ms';
+        f.style.width = '100%';
+      } else {
+        f.style.width = '0';
+      }
+    });
+
+    // Auto-advance
+    if (!isPaused) {
+      timer = setTimeout(function() {
+        goTo(currentSlide + 1);
+      }, slides[currentSlide].duration);
+    }
+  }
+
+  function openStory() {
+    buildStory();
+    currentSlide = 0;
+    isPaused = false;
+    overlay.classList.add('active');
+    overlay.classList.remove('paused');
+    document.body.style.overflow = 'hidden';
+    goTo(0);
+  }
+
+  function closeStory() {
+    clearTimeout(timer);
+    overlay.classList.remove('active', 'paused');
+    document.body.style.overflow = '';
+  }
+
+  // Controls — time-locked until 2026-03-16 15:00 JST
+  var STORY_UNLOCK = new Date('2026-03-16T15:00:00+09:00').getTime();
+  var storyBtnEl = document.getElementById('storyBtn');
+
+  function isStoryUnlocked() {
+    return Date.now() >= STORY_UNLOCK;
+  }
+  function updateStoryLock() {
+    if (isStoryUnlocked()) {
+      storyBtnEl.classList.remove('locked');
+      storyBtnEl.title = 'ストーリーモード';
+    } else {
+      storyBtnEl.classList.add('locked');
+      storyBtnEl.title = '3/16 15:00 に解放';
+    }
+  }
+  updateStoryLock();
+  // Re-check every minute
+  setInterval(updateStoryLock, 60000);
+
+  function showToast(msg) {
+    var t = document.getElementById('storyToast');
+    if (!t) {
+      t = document.createElement('div');
+      t.className = 'story-toast';
+      t.id = 'storyToast';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.classList.remove('show');
+    void t.offsetWidth;
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2800);
+  }
+
+  storyBtnEl.addEventListener('click', function() {
+    if (!isStoryUnlocked()) {
+      // Calculate remaining time
+      var diff = STORY_UNLOCK - Date.now();
+      var days = Math.floor(diff / 86400000);
+      var hrs = Math.floor((diff % 86400000) / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      var timeStr = '';
+      if (days > 0) timeStr = days + '日' + hrs + '時間';
+      else if (hrs > 0) timeStr = hrs + '時間' + mins + '分';
+      else timeStr = mins + '分';
+      showToast('🔒 ストーリーは 3/16 15:00 に解放（あと' + timeStr + '）');
+      return;
+    }
+    openStory();
+  });
+  document.getElementById('storyClose').addEventListener('click', function(e) {
+    e.stopPropagation();
+    closeStory();
+  });
+
+  // Touch / Click
+  touch.addEventListener('click', function(e) {
+    var rect = touch.getBoundingClientRect();
+    var x = (e.clientX - rect.left) / rect.width;
+    if (x < 0.3) {
+      goTo(currentSlide - 1);
+    } else if (x > 0.7) {
+      goTo(currentSlide + 1);
+    }
+  });
+
+  // Long press to pause
+  var pressTimer = null;
+  touch.addEventListener('touchstart', function(e) {
+    pressTimer = setTimeout(function() {
+      isPaused = true;
+      overlay.classList.add('paused');
+      clearTimeout(timer);
+    }, 200);
+  }, { passive: true });
+  touch.addEventListener('touchend', function() {
+    clearTimeout(pressTimer);
+    if (isPaused) {
+      isPaused = false;
+      overlay.classList.remove('paused');
+      timer = setTimeout(function() {
+        goTo(currentSlide + 1);
+      }, Math.max(1000, slides[currentSlide].duration / 2));
+    }
+  });
+  touch.addEventListener('touchmove', function() {
+    clearTimeout(pressTimer);
+  }, { passive: true });
+
+  // Keyboard
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape') closeStory();
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(currentSlide + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(currentSlide - 1); }
+  });
+})();
+</script>
+
+<script>
+// ===== Card Reviews & Photo Upload =====
+(function() {
+  var SAVE_DELAY = 600;
+  var MAX_PHOTO_W = 1200;
+  var JPEG_QUALITY = 0.72;
+
+  // Find all sight & food cards
+  var cards = document.querySelectorAll('.timeline-card.sight, .timeline-card.food');
+
+  cards.forEach(function(card) {
+    var titleEl = card.querySelector('.card-title');
+    if (!titleEl) return;
+    var spotName = titleEl.textContent.trim();
+
+    // === 1. Inject Review UI ===
+    var reviewEl = document.createElement('div');
+    reviewEl.className = 'card-review';
+
+    var row = document.createElement('div');
+    row.className = 'card-review-row';
+
+    var label = document.createElement('span');
+    label.className = 'card-review-label';
+    label.textContent = '旅の感想';
+
+    var starsWrap = document.createElement('div');
+    starsWrap.className = 'card-review-stars';
+
+    var savedMsg = document.createElement('span');
+    savedMsg.className = 'card-review-saved';
+    savedMsg.textContent = '✓ 保存';
+
+    var currentStars = 0;
+
+    for (var i = 1; i <= 5; i++) {
+      (function(starNum) {
+        var star = document.createElement('button');
+        star.className = 'card-review-star';
+        star.type = 'button';
+        star.textContent = '☆';
+        star.setAttribute('aria-label', starNum + '星');
+        star.addEventListener('click', function() {
+          // Toggle: if same star tapped again, clear
+          if (currentStars === starNum) {
+            currentStars = 0;
+          } else {
+            currentStars = starNum;
+          }
+          updateStarDisplay();
+          saveReview();
+        });
+        starsWrap.appendChild(star);
+      })(i);
+    }
+
+    var commentInput = document.createElement('input');
+    commentInput.type = 'text';
+    commentInput.className = 'card-review-input';
+    commentInput.placeholder = 'ひとこと感想を書く…';
+    commentInput.maxLength = 60;
+    var commentTimer = null;
+    commentInput.addEventListener('input', function() {
+      clearTimeout(commentTimer);
+      commentTimer = setTimeout(saveReview, SAVE_DELAY);
+    });
+    commentInput.addEventListener('blur', saveReview);
+
+    row.appendChild(label);
+    row.appendChild(starsWrap);
+    row.appendChild(savedMsg);
+    reviewEl.appendChild(row);
+    reviewEl.appendChild(commentInput);
+
+    // Insert before card-bottom
+    var bottom = card.querySelector('.card-bottom');
+    if (bottom) card.insertBefore(reviewEl, bottom);
+    else card.appendChild(reviewEl);
+
+    function updateStarDisplay() {
+      var stars = starsWrap.querySelectorAll('.card-review-star');
+      stars.forEach(function(s, idx) {
+        if (idx < currentStars) {
+          s.textContent = '★';
+          s.classList.add('filled');
+        } else {
+          s.textContent = '☆';
+          s.classList.remove('filled');
+        }
+      });
+    }
+
+    function flashSaved() {
+      savedMsg.classList.add('show');
+      setTimeout(function() { savedMsg.classList.remove('show'); }, 1500);
+    }
+
+    function saveReview() {
+      var data = { stars: currentStars, comment: commentInput.value.trim() };
+      try {
+        localStorage.setItem('kyoto-review-' + spotName, JSON.stringify(data));
+        flashSaved();
+      } catch(e) { console.warn('Review save error:', e); }
+    }
+
+    // Load existing review
+    try {
+      var saved = localStorage.getItem('kyoto-review-' + spotName);
+      if (saved) {
+        var d = JSON.parse(saved);
+        currentStars = d.stars || 0;
+        commentInput.value = d.comment || '';
+        updateStarDisplay();
+      }
+    } catch(e) {}
+
+    // === 2. Photo Upload ===
+    var photoWrap = card.querySelector('.card-photo-wrap');
+
+    if (photoWrap) {
+      // Cards WITH existing photo area — add camera button overlay
+      addPhotoOverlay(photoWrap, spotName);
+    } else {
+      // Cards WITHOUT photo area (some food cards) — add mini slot
+      addMiniPhotoSlot(card, spotName, bottom);
+    }
+  });
+
+  function resizeAndStore(file, key, callback) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        var w = img.width, h = img.height;
+        if (w > MAX_PHOTO_W) {
+          h = Math.round(h * MAX_PHOTO_W / w);
+          w = MAX_PHOTO_W;
+        }
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+        var dataUrl = canvas.toDataURL('image/jpeg', JPEG_QUALITY);
+        try {
+          localStorage.setItem('kyoto-photo-' + key, dataUrl);
+        } catch(e) {
+          console.warn('Photo too large for storage');
+        }
+        callback(dataUrl);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function addPhotoOverlay(wrap, spotName) {
+    // Camera add button
+    var addBtn = document.createElement('button');
+    addBtn.className = 'card-photo-add';
+    addBtn.type = 'button';
+    addBtn.innerHTML = '📷';
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    addBtn.appendChild(fileInput);
+
+    // Remove button
+    var removeBtn = document.createElement('button');
+    removeBtn.className = 'card-photo-remove';
+    removeBtn.type = 'button';
+    removeBtn.textContent = '✕';
+
+    wrap.appendChild(addBtn);
+    wrap.appendChild(removeBtn);
+
+    addBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function() {
+      if (!fileInput.files[0]) return;
+      resizeAndStore(fileInput.files[0], spotName, function(dataUrl) {
+        showUserPhoto(wrap, dataUrl, removeBtn);
+      });
+      fileInput.value = '';
+    });
+
+    removeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      removeUserPhoto(wrap, spotName, removeBtn);
+    });
+
+    // Load saved photo
+    try {
+      var saved = localStorage.getItem('kyoto-photo-' + spotName);
+      if (saved) showUserPhoto(wrap, saved, removeBtn);
+    } catch(e) {}
+  }
+
+  function showUserPhoto(wrap, src, removeBtn) {
+    var existing = wrap.querySelector('.card-photo-user');
+    if (existing) existing.remove();
+    var img = document.createElement('img');
+    img.className = 'card-photo-user';
+    img.src = src;
+    img.alt = '自分の写真';
+    wrap.appendChild(img);
+    removeBtn.classList.add('has-photo');
+  }
+
+  function removeUserPhoto(wrap, spotName, removeBtn) {
+    var userImg = wrap.querySelector('.card-photo-user');
+    if (userImg) userImg.remove();
+    removeBtn.classList.remove('has-photo');
+    try { localStorage.removeItem('kyoto-photo-' + spotName); } catch(e) {}
+  }
+
+  function addMiniPhotoSlot(card, spotName, insertBefore) {
+    var slot = document.createElement('div');
+    slot.className = 'card-photo-mini';
+    slot.innerHTML = '<span class="card-photo-mini-icon">📷</span><span class="card-photo-mini-text">写真を追加</span>';
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    slot.appendChild(fileInput);
+
+    var removeBtn = document.createElement('button');
+    removeBtn.className = 'card-photo-remove';
+    removeBtn.type = 'button';
+    removeBtn.textContent = '✕';
+    slot.appendChild(removeBtn);
+
+    if (insertBefore) card.insertBefore(slot, insertBefore);
+    else card.appendChild(slot);
+
+    slot.addEventListener('click', function(e) {
+      if (e.target === removeBtn) return;
+      if (!slot.querySelector('img')) fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function() {
+      if (!fileInput.files[0]) return;
+      resizeAndStore(fileInput.files[0], spotName, function(dataUrl) {
+        var existing = slot.querySelector('img');
+        if (existing) existing.remove();
+        var img = document.createElement('img');
+        img.src = dataUrl;
+        img.alt = '自分の写真';
+        slot.appendChild(img);
+        removeBtn.classList.add('has-photo');
+        slot.querySelector('.card-photo-mini-icon').style.display = 'none';
+        slot.querySelector('.card-photo-mini-text').style.display = 'none';
+      });
+      fileInput.value = '';
+    });
+
+    removeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var img = slot.querySelector('img');
+      if (img) img.remove();
+      removeBtn.classList.remove('has-photo');
+      slot.querySelector('.card-photo-mini-icon').style.display = '';
+      slot.querySelector('.card-photo-mini-text').style.display = '';
+      try { localStorage.removeItem('kyoto-photo-' + spotName); } catch(e2) {}
+    });
+
+    // Load saved
+    try {
+      var saved = localStorage.getItem('kyoto-photo-' + spotName);
+      if (saved) {
+        var img = document.createElement('img');
+        img.src = saved;
+        img.alt = '自分の写真';
+        slot.appendChild(img);
+        removeBtn.classList.add('has-photo');
+        slot.querySelector('.card-photo-mini-icon').style.display = 'none';
+        slot.querySelector('.card-photo-mini-text').style.display = 'none';
+      }
+    } catch(e) {}
+  }
+
+  // Also add photo slots to specific transport cards only
+  var transportPhotoNames = ['東京駅出発', '京都駅着', '京都駅出発'];
+  var transportCards = document.querySelectorAll('.timeline-card.transport');
+  transportCards.forEach(function(card) {
+    var titleEl = card.querySelector('.card-title');
+    if (!titleEl) return;
+    var spotName = titleEl.textContent.trim();
+    if (transportPhotoNames.indexOf(spotName) === -1) return;
+    // Exclude the Kumagaya-bound 東京駅出発 (あさま)
+    var detail = card.querySelector('.card-detail');
+    if (spotName === '東京駅出発' && detail && detail.textContent.indexOf('あさま') !== -1) return;
+    var bottom = card.querySelector('.card-bottom');
+    addMiniPhotoSlot(card, spotName, bottom);
+  });
+})();
 </script>
 </body>
 </html>
