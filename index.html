@@ -450,6 +450,89 @@ body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--warm-white);c
 .story-spot-gradient{background:linear-gradient(to right,rgba(0,0,0,.45) 0%,rgba(0,0,0,.15) 30%,transparent 55%)}
 .story-spot-img{object-position:center center}
 }
+/* Feature 1: Highlight Input Modal */
+.highlight-modal-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;border-bottom:1px solid rgba(128,128,128,.12)}
+.highlight-modal-tab{padding:.8rem 1rem;background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;font-size:.9rem;color:var(--ink-light);transition:color .2s,border-color .2s;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:500}
+.highlight-modal-tab.active{color:var(--ink);border-bottom-color:var(--sakura)}
+.highlight-day-content{display:none}
+.highlight-day-content.active{display:block}
+.highlight-form-group{margin-bottom:1.2rem}
+.highlight-form-label{display:block;font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;font-family:'Zen Old Mincho',serif}
+.highlight-textarea{width:100%;padding:.7rem;border:1px solid rgba(128,128,128,.2);border-radius:8px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:.85rem;color:var(--ink);background:var(--card-bg);resize:vertical;min-height:80px;max-height:150px;transition:border-color .2s,background .4s}
+.highlight-textarea:focus{outline:none;border-color:var(--sakura)}
+.highlight-textarea::placeholder{color:var(--ink-faint)}
+.highlight-textarea-counter{display:block;font-size:.75rem;color:var(--ink-faint);margin-top:.3rem;text-align:right}
+.highlight-input{width:100%;padding:.7rem;border:1px solid rgba(128,128,128,.2);border-radius:8px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:.85rem;color:var(--ink);background:var(--card-bg);transition:border-color .2s,background .4s}
+.highlight-input:focus{outline:none;border-color:var(--sakura)}
+.highlight-input::placeholder{color:var(--ink-faint)}
+.highlight-stars-wrapper{display:flex;gap:.3rem;align-items:center}
+.highlight-star{background:none;border:none;font-size:1.3rem;cursor:pointer;padding:0;margin:0;transition:transform .15s;color:rgba(128,128,128,.3)}
+.highlight-star:hover{transform:scale(1.15)}
+.highlight-star.filled{color:#E8B84B;text-shadow:0 0 3px rgba(232,184,75,.3)}
+.highlight-star.empty{color:rgba(128,128,128,.25)}
+.highlight-button-group{display:flex;gap:.8rem;margin-top:1.5rem}
+.highlight-button-save{flex:1;padding:.8rem;background:var(--sakura);color:#fff;border:none;border-radius:8px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:600;cursor:pointer;transition:opacity .2s}
+.highlight-button-save:hover{opacity:.9}
+.highlight-button-save:active{opacity:.8}
+.highlight-button-save.saved{background:var(--sight)}
+.nav-icon-btn.locked{opacity:.4;cursor:not-allowed}
+.nav-icon-btn.locked:hover{transform:none}
+/* Feature 2: Travelogue Overlay */
+.travelogue-overlay{position:fixed;inset:0;z-index:1000;background:var(--warm-white);overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;opacity:0;transition:opacity .3s}
+.travelogue-overlay.active{display:block;opacity:1}
+[data-theme="dark"] .travelogue-overlay{background:var(--warm-white)}
+.travelogue-close{position:fixed;top:1.5rem;right:1.5rem;z-index:1001;background:var(--ink);color:var(--warm-white);border:none;border-radius:50%;width:42px;height:42px;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);transition:background .2s}
+.travelogue-close:hover{background:var(--sakura)}
+.travelogue-content{max-width:800px;margin:0 auto;padding:0}
+.travelogue-cover{min-height:100vh;background:linear-gradient(135deg,rgba(212,116,138,.08) 0%,rgba(196,162,101,.06) 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center;position:relative;overflow:hidden}
+.travelogue-cover::before{content:'🌸';position:absolute;font-size:120px;opacity:.1;top:-20px;left:-20px;pointer-events:none}
+.travelogue-cover::after{content:'🏯';position:absolute;font-size:100px;opacity:.1;bottom:-30px;right:-20px;pointer-events:none}
+.travelogue-cover-label{font-family:'Caveat',cursive;font-size:1.4rem;color:var(--sakura-deep);margin-bottom:1rem;letter-spacing:.1em}
+.travelogue-cover-title{font-family:'Zen Old Mincho',serif;font-size:3rem;font-weight:700;color:var(--ink);margin-bottom:1.2rem;letter-spacing:.05em}
+.travelogue-cover-dates{font-size:1rem;color:var(--ink-light);margin-bottom:2rem;letter-spacing:.05em}
+.travelogue-cover-members{font-size:.95rem;color:var(--ink-light);margin-bottom:3rem;letter-spacing:.02em}
+.travelogue-stats-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:1.5rem;margin-bottom:2rem;background:rgba(255,255,255,.5);padding:1.5rem;border-radius:12px;backdrop-filter:blur(10px)}
+.travelogue-stat{text-align:center}
+.travelogue-stat-num{font-family:'Zen Old Mincho',serif;font-size:1.8rem;font-weight:700;color:var(--sakura-deep);display:block}
+.travelogue-stat-label{font-size:.75rem;color:var(--ink-faint);margin-top:.3rem}
+.travelogue-section{padding:3rem 2rem;position:relative}
+.travelogue-day-header{font-family:'Zen Old Mincho',serif;font-size:1.5rem;font-weight:700;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:1rem}
+.travelogue-day-date{font-size:.9rem;color:var(--ink-light);font-family:'Zen Kaku Gothic New',sans-serif;font-weight:400}
+.travelogue-highlight-box{background:var(--sakura-light);border-left:4px solid var(--sakura-deep);padding:1.2rem;border-radius:8px;margin:1.5rem 0;transition:background .4s}
+.travelogue-highlight-item{margin-bottom:.8rem}
+.travelogue-highlight-label{font-family:'Zen Old Mincho',serif;font-size:.8rem;font-weight:700;color:var(--sakura-deep);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+.travelogue-highlight-text{font-size:.95rem;color:var(--ink);line-height:1.6;font-style:italic}
+.travelogue-highlight-mvp{font-size:.85rem;color:var(--ink-light)}
+.travelogue-highlight-stars{display:flex;gap:.2rem;margin-top:.3rem}
+.travelogue-highlight-star{font-size:.85rem}
+.travelogue-spot-card{background:var(--card-bg);border-radius:12px;overflow:hidden;margin-bottom:1.2rem;box-shadow:var(--shadow-md);transition:transform .2s}
+.travelogue-spot-card:hover{transform:translateY(-4px)}
+.travelogue-spot-image{width:100%;height:200px;object-fit:cover;background:var(--warm-cream)}
+.travelogue-spot-placeholder{width:100%;height:200px;background:var(--warm-cream);display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:.3}
+.travelogue-spot-info{padding:1.2rem}
+.travelogue-spot-time{font-size:.75rem;color:var(--ink-faint);margin-bottom:.3rem;letter-spacing:.02em}
+.travelogue-spot-name{font-family:'Zen Old Mincho',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.travelogue-spot-meta{display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem;flex-wrap:wrap}
+.travelogue-spot-badge{display:inline-block;font-size:.65rem;font-weight:600;padding:.35rem .6rem;border-radius:4px;text-transform:uppercase;letter-spacing:.03em}
+.travelogue-spot-badge.sight{background:rgba(123,143,78,.15);color:var(--sight)}
+.travelogue-spot-badge.food{background:rgba(212,136,77,.15);color:var(--food)}
+.travelogue-spot-rating{display:flex;align-items:center;gap:.4rem}
+.travelogue-spot-stars{display:flex;gap:.1rem}
+.travelogue-spot-star{font-size:.8rem;color:#E8B84B}
+.travelogue-spot-rating-text{font-size:.75rem;color:var(--ink-faint)}
+.travelogue-spot-comment{font-size:.85rem;color:var(--ink-light);line-height:1.6;font-style:italic}
+.travelogue-day-cost{text-align:right;padding:1rem 0;border-top:1px dashed rgba(128,128,128,.15);font-size:.9rem;color:var(--ink-light);margin-top:1.5rem}
+.travelogue-day-cost-amount{font-weight:700;color:var(--ink);font-size:1rem}
+.travelogue-best-spot{background:var(--warm-cream);border-radius:12px;padding:1.5rem;margin:2rem 0;text-align:center;transition:background .4s}
+.travelogue-best-label{font-family:'Zen Old Mincho',serif;font-size:.9rem;color:var(--ink-faint);margin-bottom:.5rem}
+.travelogue-best-name{font-family:'Zen Old Mincho',serif;font-size:1.3rem;font-weight:700;color:var(--sakura-deep);margin:.5rem 0}
+.travelogue-best-stars{display:flex;gap:.2rem;justify-content:center;margin:.6rem 0;font-size:1.1rem}
+.travelogue-summary{padding:3rem 2rem;text-align:center;background:linear-gradient(135deg,rgba(212,116,138,.08) 0%,rgba(196,162,101,.06) 100%)}
+.travelogue-summary-title{font-family:'Zen Old Mincho',serif;font-size:1.8rem;font-weight:700;color:var(--ink);margin-bottom:1.5rem}
+.travelogue-summary-stat{margin-bottom:1.2rem;font-size:1rem;color:var(--ink-light)}
+.travelogue-summary-stat strong{color:var(--ink);font-weight:700}
+.travelogue-ending-message{font-family:'Zen Old Mincho',serif;font-size:1.2rem;color:var(--ink);margin:2rem 0;font-style:italic}
+.travelogue-ending-petals{font-size:1.8rem;margin-top:2rem;opacity:.6}
 </style>
 </head>
 <body>
@@ -477,6 +560,15 @@ if ('serviceWorker' in navigator) {
 </script>
 <div class="sakura-container" id="sakuraContainer"></div>
 
+<script>
+(function() {
+  var dr = {'東福寺':{stars:4,comment:'紅葉の時期じゃなくても庭園が見事だった'},'蓮華茶屋（ランチ）':{stars:4,comment:'宇治の雰囲気の中でゆったりランチ'},'平等院鳳凰堂':{stars:5,comment:'10円玉の世界が目の前に。水面の反射が最高'},'伏見稲荷大社':{stars:5,comment:'千本鳥居が圧巻。奥社まで行く体力は残しておくべし'},'祇園きよみず祇をん新橋（夕飯）':{stars:4,comment:'コースの鯛めしが絶品だった'},'東寺（夜桜ライトアップ）':{stars:5,comment:'五重塔と夜桜の組み合わせは言葉を失う美しさ'},'龍安寺':{stars:4,comment:'石庭の前でぼーっとする時間が贅沢'},'金閣寺':{stars:5,comment:'思ったより金ピカ。晴れの日に来て正解'},'銀閣寺':{stars:4,comment:'銀コロッケ食べ歩きが楽しかった'},'八坂庚申堂・清水寺（食べ歩き）':{stars:5,comment:'清水の舞台からの眺望は何度来ても感動する'},'京都炭火串焼つじや（夕飯）':{stars:4,comment:'飲み放題付きでこの値段はコスパ最強'},'天龍寺・渡月橋':{stars:5,comment:'嵐山の朝は空気が違う。天龍寺の庭園は京都一'},'京都駅着（ランチ・お土産）':{stars:4,comment:'第一旭のラーメン、最後の京都飯にふさわしい'}};
+  var dp = {'東京駅出発':'https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600&h=400&fit=crop&q=70','京都駅着':'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600&h=400&fit=crop&q=70','蓮華茶屋（ランチ）':'https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=600&h=400&fit=crop&q=70','祇園きよみず祇をん新橋（夕飯）':'https://images.unsplash.com/photo-1553621042-f6e147245754?w=600&h=400&fit=crop&q=70','京都炭火串焼つじや（夕飯）':'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop&q=70','京都駅着（ランチ・お土産）':'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop&q=70'};
+  var da = {'kyoto-album-0':'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&h=400&fit=crop&q=70','kyoto-album-1':'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&h=400&fit=crop&q=70','kyoto-album-2':'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&h=400&fit=crop&q=70'};
+  try{Object.keys(dr).forEach(function(k){if(!localStorage.getItem('kyoto-review-'+k))localStorage.setItem('kyoto-review-'+k,JSON.stringify(dr[k]));});Object.keys(dp).forEach(function(k){if(!localStorage.getItem('kyoto-photo-'+k))localStorage.setItem('kyoto-photo-'+k,dp[k]);});Object.keys(da).forEach(function(k){if(!localStorage.getItem(k))localStorage.setItem(k,da[k]);});}catch(e){}
+})();
+</script>
+
 <section class="hero">
   <div class="hero-pattern"></div>
   <div class="hero-content">
@@ -502,6 +594,8 @@ if ('serviceWorker' in navigator) {
     </div>
     <div class="nav-actions">
       <button class="nav-icon-btn story-play-btn" id="storyBtn" title="ストーリーモード">▶</button>
+      <button class="nav-icon-btn" id="highlightBtn" title="旅の一言">✏️</button>
+      <button class="nav-icon-btn" id="travelogueBtn" title="旅行記">📖</button>
       <button class="nav-icon-btn" id="shareBtn" title="共有">📤</button>
       <button class="nav-icon-btn" id="qrBtn" title="QRコード共有">📱</button>
       <button class="nav-icon-btn" id="costBtn" title="費用一覧">💰</button>
@@ -926,6 +1020,98 @@ if ('serviceWorker' in navigator) {
 
     </div>
     <button class="modal-close-bottom" id="helpModalCloseBottom">閉じる</button>
+  </div>
+</div>
+
+<!-- Feature 1: Highlight Input Modal -->
+<div class="modal-overlay" id="highlightModal">
+  <div class="modal" style="max-width:500px">
+    <div class="modal-title"><span>✏️ 旅の一言</span><button class="modal-close" id="highlightModalClose">&times;</button></div>
+
+    <div class="highlight-modal-tabs">
+      <button class="highlight-modal-tab active" data-day="1">Day 1</button>
+      <button class="highlight-modal-tab" data-day="2">Day 2</button>
+      <button class="highlight-modal-tab" data-day="3">Day 3</button>
+    </div>
+
+    <div id="hlDay1" class="highlight-day-content active">
+      <div class="highlight-form-group">
+        <label class="highlight-form-label">一言</label>
+        <textarea class="highlight-textarea" maxlength="100" placeholder="宇治が想像以上だった など"></textarea>
+        <span class="highlight-textarea-counter"><span class="char-count">0</span>/100</span>
+      </div>
+      <div class="highlight-form-group">
+        <label class="highlight-form-label">MVP</label>
+        <input type="text" class="highlight-input" placeholder="楽斗 など" maxlength="30">
+      </div>
+      <div class="highlight-form-group">
+        <label class="highlight-form-label">満足度</label>
+        <div class="highlight-stars-wrapper">
+          <button type="button" class="highlight-star" data-star="1">☆</button>
+          <button type="button" class="highlight-star" data-star="2">☆</button>
+          <button type="button" class="highlight-star" data-star="3">☆</button>
+          <button type="button" class="highlight-star" data-star="4">☆</button>
+          <button type="button" class="highlight-star" data-star="5">☆</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="hlDay2" class="highlight-day-content">
+      <div class="highlight-form-group">
+        <label class="highlight-form-label">一言</label>
+        <textarea class="highlight-textarea" maxlength="100" placeholder="宇治が想像以上だった など"></textarea>
+        <span class="highlight-textarea-counter"><span class="char-count">0</span>/100</span>
+      </div>
+      <div class="highlight-form-group">
+        <label class="highlight-form-label">MVP</label>
+        <input type="text" class="highlight-input" placeholder="楽斗 など" maxlength="30">
+      </div>
+      <div class="highlight-form-group">
+        <label class="highlight-form-label">満足度</label>
+        <div class="highlight-stars-wrapper">
+          <button type="button" class="highlight-star" data-star="1">☆</button>
+          <button type="button" class="highlight-star" data-star="2">☆</button>
+          <button type="button" class="highlight-star" data-star="3">☆</button>
+          <button type="button" class="highlight-star" data-star="4">☆</button>
+          <button type="button" class="highlight-star" data-star="5">☆</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="hlDay3" class="highlight-day-content">
+      <div class="highlight-form-group">
+        <label class="highlight-form-label">一言</label>
+        <textarea class="highlight-textarea" maxlength="100" placeholder="宇治が想像以上だった など"></textarea>
+        <span class="highlight-textarea-counter"><span class="char-count">0</span>/100</span>
+      </div>
+      <div class="highlight-form-group">
+        <label class="highlight-form-label">MVP</label>
+        <input type="text" class="highlight-input" placeholder="楽斗 など" maxlength="30">
+      </div>
+      <div class="highlight-form-group">
+        <label class="highlight-form-label">満足度</label>
+        <div class="highlight-stars-wrapper">
+          <button type="button" class="highlight-star" data-star="1">☆</button>
+          <button type="button" class="highlight-star" data-star="2">☆</button>
+          <button type="button" class="highlight-star" data-star="3">☆</button>
+          <button type="button" class="highlight-star" data-star="4">☆</button>
+          <button type="button" class="highlight-star" data-star="5">☆</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-button-group">
+      <button class="highlight-button-save" id="highlightSaveBtn">保存</button>
+    </div>
+    <button class="modal-close-bottom" id="highlightModalCloseBottom">閉じる</button>
+  </div>
+</div>
+
+<!-- Feature 2: Travelogue Overlay -->
+<div class="travelogue-overlay" id="travelogueOverlay">
+  <button class="travelogue-close" id="travelogueClose">✕</button>
+  <div class="travelogue-content" id="travelogueContent">
+    <!-- Generated by JavaScript -->
   </div>
 </div>
 
@@ -1886,7 +2072,7 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
   }
 
   // Controls — time-locked until 2026-03-16 15:00 JST
-  var STORY_UNLOCK = new Date('2026-03-16T15:00:00+09:00').getTime();
+  var STORY_UNLOCK = 1773640800000; // 2026-03-16 15:00 JST
   var storyBtnEl = document.getElementById('storyBtn');
 
   function isStoryUnlocked() {
@@ -2281,6 +2467,516 @@ document.querySelectorAll('.album-slot').forEach(function(slot) {
     if (spotName === '東京駅出発' && detail && detail.textContent.indexOf('あさま') !== -1) return;
     var bottom = card.querySelector('.card-bottom');
     addMiniPhotoSlot(card, spotName, bottom);
+  });
+})();
+
+// ===== Feature 1: Highlight Input =====
+(function() {
+  var STORY_UNLOCK = 1773640800000; // 2026-03-16 15:00 JST
+  var highlightBtn = document.getElementById('highlightBtn');
+  var highlightModal = document.getElementById('highlightModal');
+  var highlightModalClose = document.getElementById('highlightModalClose');
+  var highlightModalCloseBottom = document.getElementById('highlightModalCloseBottom');
+  var highlightSaveBtn = document.getElementById('highlightSaveBtn');
+
+  function isUnlocked() {
+    return Date.now() >= STORY_UNLOCK;
+  }
+
+  function updateLockState() {
+    if (isUnlocked()) {
+      highlightBtn.classList.remove('locked');
+      highlightBtn.disabled = false;
+    } else {
+      highlightBtn.classList.add('locked');
+      highlightBtn.disabled = true;
+    }
+  }
+
+  updateLockState();
+  setInterval(updateLockState, 1000);
+
+  // Tab switching
+  var tabs = document.querySelectorAll('.highlight-modal-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var dayNum = this.dataset.day;
+      document.querySelectorAll('.highlight-modal-tab').forEach(function(t) {
+        t.classList.remove('active');
+      });
+      document.querySelectorAll('.highlight-day-content').forEach(function(c) {
+        c.classList.remove('active');
+      });
+      this.classList.add('active');
+      document.getElementById('hlDay' + dayNum).classList.add('active');
+    });
+  });
+
+  // Textarea character counter
+  document.querySelectorAll('.highlight-textarea').forEach(function(ta) {
+    ta.addEventListener('input', function() {
+      var counter = this.nextElementSibling.querySelector('.char-count');
+      if (counter) counter.textContent = this.value.length;
+    });
+  });
+
+  // Star rating clicks
+  document.querySelectorAll('.highlight-stars-wrapper').forEach(function(wrapper) {
+    var stars = wrapper.querySelectorAll('.highlight-star');
+    var currentRating = 0;
+
+    stars.forEach(function(star) {
+      star.addEventListener('click', function() {
+        var starNum = parseInt(this.dataset.star);
+        if (currentRating === starNum) {
+          currentRating = 0;
+        } else {
+          currentRating = starNum;
+        }
+        updateStarDisplay();
+      });
+    });
+
+    function updateStarDisplay() {
+      stars.forEach(function(s, idx) {
+        var num = idx + 1;
+        if (num <= currentRating) {
+          s.textContent = '★';
+          s.classList.add('filled');
+          s.classList.remove('empty');
+        } else {
+          s.textContent = '☆';
+          s.classList.remove('filled');
+          s.classList.add('empty');
+        }
+      });
+    }
+
+    // Store current rating in wrapper for save
+    wrapper.dataset.currentRating = 0;
+    var updateFunc = updateStarDisplay;
+    wrapper.updateRating = function(newRating) {
+      currentRating = newRating;
+      wrapper.dataset.currentRating = newRating;
+      updateFunc();
+    };
+    wrapper.getRating = function() {
+      return currentRating;
+    };
+  });
+
+  function saveHighlight(dayNum) {
+    var dayContent = document.getElementById('hlDay' + dayNum);
+    var textarea = dayContent.querySelector('.highlight-textarea');
+    var input = dayContent.querySelector('.highlight-input');
+    var starsWrapper = dayContent.querySelector('.highlight-stars-wrapper');
+
+    var rating = 0;
+    var stars = starsWrapper.querySelectorAll('.highlight-star');
+    stars.forEach(function(s, idx) {
+      if (s.classList.contains('filled')) {
+        rating = idx + 1;
+      }
+    });
+
+    var data = {
+      text: textarea.value.trim(),
+      mvp: input.value.trim(),
+      stars: rating
+    };
+
+    try {
+      localStorage.setItem('kyoto-highlight-' + dayNum, JSON.stringify(data));
+      highlightSaveBtn.classList.add('saved');
+      highlightSaveBtn.textContent = '✓ 保存しました';
+      setTimeout(function() {
+        highlightSaveBtn.classList.remove('saved');
+        highlightSaveBtn.textContent = '保存';
+      }, 2000);
+    } catch(e) {
+      console.warn('Failed to save highlight:', e);
+    }
+  }
+
+  function loadHighlight(dayNum) {
+    try {
+      var saved = localStorage.getItem('kyoto-highlight-' + dayNum);
+      if (!saved) return;
+      var data = JSON.parse(saved);
+      var dayContent = document.getElementById('hlDay' + dayNum);
+      var textarea = dayContent.querySelector('.highlight-textarea');
+      var input = dayContent.querySelector('.highlight-input');
+      var starsWrapper = dayContent.querySelector('.highlight-stars-wrapper');
+
+      if (data.text) textarea.value = data.text;
+      if (textarea.nextElementSibling) {
+        textarea.nextElementSibling.querySelector('.char-count').textContent = textarea.value.length;
+      }
+      if (data.mvp) input.value = data.mvp;
+
+      if (data.stars) {
+        var stars = starsWrapper.querySelectorAll('.highlight-star');
+        stars.forEach(function(s, idx) {
+          if (idx + 1 <= data.stars) {
+            s.textContent = '★';
+            s.classList.add('filled');
+            s.classList.remove('empty');
+          } else {
+            s.textContent = '☆';
+            s.classList.remove('filled');
+            s.classList.add('empty');
+          }
+        });
+      }
+    } catch(e) {
+      console.warn('Failed to load highlight:', e);
+    }
+  }
+
+  // Load all highlights when modal opens
+  function openHighlightModal() {
+    if (!isUnlocked()) return;
+    [1, 2, 3].forEach(function(d) { loadHighlight(d); });
+    highlightModal.classList.add('open');
+  }
+
+  highlightBtn.addEventListener('click', openHighlightModal);
+  highlightModalClose.addEventListener('click', function() {
+    highlightModal.classList.remove('open');
+  });
+  highlightModalCloseBottom.addEventListener('click', function() {
+    highlightModal.classList.remove('open');
+  });
+
+  highlightSaveBtn.addEventListener('click', function() {
+    var activeTab = document.querySelector('.highlight-modal-tab.active');
+    if (activeTab) {
+      var dayNum = activeTab.dataset.day;
+      saveHighlight(dayNum);
+    }
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && highlightModal.classList.contains('open')) {
+      highlightModal.classList.remove('open');
+    }
+  });
+})();
+
+// ===== Feature 2: Travelogue =====
+(function() {
+  var STORY_UNLOCK = 1773640800000; // 2026-03-16 15:00 JST
+  var travelogueBtn = document.getElementById('travelogueBtn');
+  var travelogueOverlay = document.getElementById('travelogueOverlay');
+  var travelogueClose = document.getElementById('travelogueClose');
+  var travelogueContent = document.getElementById('travelogueContent');
+
+  function isUnlocked() {
+    return Date.now() >= STORY_UNLOCK;
+  }
+
+  function updateLockState() {
+    if (isUnlocked()) {
+      travelogueBtn.classList.remove('locked');
+      travelogueBtn.disabled = false;
+    } else {
+      travelogueBtn.classList.add('locked');
+      travelogueBtn.disabled = true;
+    }
+  }
+
+  updateLockState();
+  setInterval(updateLockState, 1000);
+
+  function getReview(name) {
+    try {
+      var data = localStorage.getItem('kyoto-review-' + name);
+      if (data) return JSON.parse(data);
+    } catch(e) {}
+    return { stars: 0, comment: '' };
+  }
+
+  function getUserPhoto(name) {
+    try {
+      return localStorage.getItem('kyoto-photo-' + name) || '';
+    } catch(e) { return ''; }
+  }
+
+  function getHighlight(dayNum) {
+    try {
+      var data = localStorage.getItem('kyoto-highlight-' + dayNum);
+      if (data) return JSON.parse(data);
+    } catch(e) {}
+    return null;
+  }
+
+  function extractSpots() {
+    var allDays = [];
+    var days = [
+      { id: 'day1', num: 1, date: '3月14日', weekday: '（土）' },
+      { id: 'day2', num: 2, date: '3月15日', weekday: '（日）' },
+      { id: 'day3', num: 3, date: '3月16日', weekday: '（月）' }
+    ];
+
+    days.forEach(function(day) {
+      var dayData = { dayNum: day.num, date: day.date, weekday: day.weekday, spots: [] };
+      var section = document.getElementById(day.id);
+      if (!section) { allDays.push(dayData); return; }
+
+      var items = section.querySelectorAll('.timeline-item');
+      items.forEach(function(item) {
+        var card = item.querySelector('.timeline-card');
+        if (!card) return;
+        var isSight = card.classList.contains('sight');
+        var isFood = card.classList.contains('food');
+        if (!isSight && !isFood) return;
+
+        var titleEl = card.querySelector('.card-title');
+        if (!titleEl) return;
+        var name = titleEl.textContent.trim();
+
+        var timeEl = item.querySelector('.timeline-time');
+        var timeText = timeEl ? timeEl.textContent.trim() : '';
+
+        var userPhoto = getUserPhoto(name);
+        var imgEl = card.querySelector('.card-photo');
+        var imgSrc = userPhoto || (imgEl ? imgEl.src : '');
+
+        var placeholderEl = card.querySelector('.card-photo-placeholder');
+        var emoji = placeholderEl ? placeholderEl.textContent.trim() : '';
+
+        var category = isSight ? 'sight' : 'food';
+        var categoryLabel = isSight ? '観光' : '食事';
+
+        var review = getReview(name);
+
+        dayData.spots.push({
+          name: name,
+          time: timeText,
+          category: category,
+          categoryLabel: categoryLabel,
+          img: imgSrc,
+          emoji: emoji,
+          stars: review.stars,
+          comment: review.comment
+        });
+      });
+
+      allDays.push(dayData);
+    });
+
+    return allDays;
+  }
+
+  function getCostData() {
+    var costs = { day1: 0, day2: 0, day3: 0, total: 0 };
+    try {
+      var sub1 = document.getElementById('modalSub1');
+      var sub2 = document.getElementById('modalSub2');
+      var sub3 = document.getElementById('modalSub3');
+      var total = document.getElementById('totalCost');
+
+      if (sub1) {
+        var m1 = sub1.textContent.match(/¥([\d,]+)/);
+        if (m1) costs.day1 = parseInt(m1[1].replace(/,/g, ''));
+      }
+      if (sub2) {
+        var m2 = sub2.textContent.match(/¥([\d,]+)/);
+        if (m2) costs.day2 = parseInt(m2[1].replace(/,/g, ''));
+      }
+      if (sub3) {
+        var m3 = sub3.textContent.match(/¥([\d,]+)/);
+        if (m3) costs.day3 = parseInt(m3[1].replace(/,/g, ''));
+      }
+      if (total) {
+        var mt = total.textContent.match(/¥([\d,]+)/);
+        if (mt) costs.total = parseInt(mt[1].replace(/,/g, ''));
+      }
+    } catch(e) {
+      console.warn('Cost parsing error:', e);
+    }
+    return costs;
+  }
+
+  function starsHTML(n) {
+    var html = '';
+    for (var i = 0; i < 5; i++) {
+      html += '<span class="travelogue-spot-star">' + (i < n ? '★' : '☆') + '</span>';
+    }
+    return html;
+  }
+
+  function generateTravelogue() {
+    var allDays = extractSpots();
+    var costs = getCostData();
+
+    var spotCount = 0;
+    allDays.forEach(function(d) { spotCount += d.spots.length; });
+
+    var avgRating = 0;
+    var totalStars = 0;
+    var ratingCount = 0;
+    allDays.forEach(function(d) {
+      d.spots.forEach(function(s) {
+        if (s.stars > 0) {
+          totalStars += s.stars;
+          ratingCount++;
+        }
+      });
+    });
+    if (ratingCount > 0) avgRating = (totalStars / ratingCount).toFixed(1);
+
+    var bestSpot = null;
+    var bestStars = 0;
+    allDays.forEach(function(d) {
+      d.spots.forEach(function(s) {
+        if (s.stars > bestStars) {
+          bestStars = s.stars;
+          bestSpot = s;
+        }
+      });
+    });
+
+    var allMVPs = [];
+    [1, 2, 3].forEach(function(d) {
+      var h = getHighlight(d);
+      if (h && h.mvp) allMVPs.push(h.mvp);
+    });
+    var tripMVP = allMVPs.length > 0 ? allMVPs[0] : '全員';
+
+    var html = '';
+
+    // Cover
+    html += '<div class="travelogue-cover">';
+    html += '<div class="travelogue-cover-label">Travel Journal</div>';
+    html += '<div class="travelogue-cover-title">京都</div>';
+    html += '<div class="travelogue-cover-dates">2026. 3. 14 — 3. 16</div>';
+    html += '<div class="travelogue-cover-members">舜 · 翔 · 楽斗 · ほか2名</div>';
+    html += '<div class="travelogue-stats-strip">';
+    html += '<div class="travelogue-stat"><span class="travelogue-stat-num">' + spotCount + '</span><span class="travelogue-stat-label">スポット</span></div>';
+    html += '<div class="travelogue-stat"><span class="travelogue-stat-num">3</span><span class="travelogue-stat-label">日間</span></div>';
+    html += '<div class="travelogue-stat"><span class="travelogue-stat-num">¥' + (costs.total || '—').toLocaleString() + '</span><span class="travelogue-stat-label">合計</span></div>';
+    html += '<div class="travelogue-stat"><span class="travelogue-stat-num">' + (avgRating || '—') + '</span><span class="travelogue-stat-label">平均評価</span></div>';
+    html += '</div></div>';
+
+    // Days
+    allDays.forEach(function(day, idx) {
+      html += '<div class="travelogue-section">';
+      html += '<div class="travelogue-day-header">';
+      html += '<span>Day ' + ('0' + day.dayNum).slice(-2) + '</span>';
+      html += '<span class="travelogue-day-date">' + day.date + day.weekday + '</span>';
+      html += '</div>';
+
+      var highlight = getHighlight(day.dayNum);
+      if (highlight && (highlight.text || highlight.mvp || highlight.stars)) {
+        html += '<div class="travelogue-highlight-box">';
+        if (highlight.text) {
+          html += '<div class="travelogue-highlight-item">';
+          html += '<div class="travelogue-highlight-label">一言</div>';
+          html += '<div class="travelogue-highlight-text">' + escapeHtml(highlight.text) + '</div>';
+          html += '</div>';
+        }
+        if (highlight.mvp) {
+          html += '<div class="travelogue-highlight-item">';
+          html += '<div class="travelogue-highlight-mvp"><strong>MVP:</strong> ' + escapeHtml(highlight.mvp) + '</div>';
+          html += '</div>';
+        }
+        if (highlight.stars) {
+          html += '<div class="travelogue-highlight-stars">';
+          for (var s = 0; s < highlight.stars; s++) {
+            html += '<span class="travelogue-highlight-star">★</span>';
+          }
+          html += '</div>';
+        }
+        html += '</div>';
+      }
+
+      day.spots.forEach(function(spot) {
+        html += '<div class="travelogue-spot-card">';
+        if (spot.img) {
+          html += '<img src="' + spot.img + '" alt="' + escapeHtml(spot.name) + '" class="travelogue-spot-image">';
+        } else {
+          html += '<div class="travelogue-spot-placeholder">' + spot.emoji + '</div>';
+        }
+        html += '<div class="travelogue-spot-info">';
+        html += '<div class="travelogue-spot-time">' + escapeHtml(spot.time) + '</div>';
+        html += '<div class="travelogue-spot-name">' + escapeHtml(spot.name) + '</div>';
+        html += '<div class="travelogue-spot-meta">';
+        html += '<span class="travelogue-spot-badge ' + spot.category + '">' + spot.categoryLabel + '</span>';
+        if (spot.stars > 0) {
+          html += '<div class="travelogue-spot-rating">';
+          html += '<div class="travelogue-spot-stars">' + starsHTML(spot.stars) + '</div>';
+          html += '<span class="travelogue-spot-rating-text">' + spot.stars + '.0</span>';
+          html += '</div>';
+        }
+        html += '</div>';
+        if (spot.comment) {
+          html += '<div class="travelogue-spot-comment">"' + escapeHtml(spot.comment) + '"</div>';
+        }
+        html += '</div></div>';
+      });
+
+      var dayCost = costs['day' + day.dayNum] || 0;
+      if (dayCost > 0) {
+        html += '<div class="travelogue-day-cost">Day ' + day.dayNum + ' 小計 <span class="travelogue-day-cost-amount">¥' + dayCost.toLocaleString() + '</span></div>';
+      }
+
+      html += '</div>';
+    });
+
+    // Best Spot
+    if (bestSpot) {
+      html += '<div class="travelogue-section"><div class="travelogue-best-spot">';
+      html += '<div class="travelogue-best-label">Best Spot</div>';
+      html += '<div class="travelogue-best-name">' + escapeHtml(bestSpot.name) + '</div>';
+      html += '<div class="travelogue-best-stars">' + starsHTML(bestSpot.stars) + '</div>';
+      html += '</div></div>';
+    }
+
+    // Summary
+    html += '<div class="travelogue-summary">';
+    html += '<div class="travelogue-summary-title">旅の終わりに</div>';
+    html += '<div class="travelogue-summary-stat">3日間で <strong>' + spotCount + '</strong> のスポットを巡りました</div>';
+    html += '<div class="travelogue-summary-stat">費用合計：<strong>¥' + (costs.total || '—').toLocaleString() + '</strong></div>';
+    html += '<div class="travelogue-ending-message">また行こう、京都。</div>';
+    html += '<div class="travelogue-ending-message" style="font-size:0.95rem;font-style:normal;">Trip MVP: <strong>' + escapeHtml(tripMVP) + '</strong></div>';
+    html += '<div class="travelogue-ending-petals">🌸 🏯 ⛩</div>';
+    html += '</div>';
+
+    return html;
+  }
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function openTravelogue() {
+    if (!isUnlocked()) return;
+    var html = generateTravelogue();
+    travelogueContent.innerHTML = html;
+    travelogueOverlay.classList.add('active');
+  }
+
+  travelogueBtn.addEventListener('click', openTravelogue);
+  travelogueClose.addEventListener('click', function() {
+    travelogueOverlay.classList.remove('active');
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && travelogueOverlay.classList.contains('active')) {
+      travelogueOverlay.classList.remove('active');
+    }
+  });
+
+  // Close on backdrop click
+  travelogueOverlay.addEventListener('click', function(e) {
+    if (e.target === travelogueOverlay) {
+      travelogueOverlay.classList.remove('active');
+    }
   });
 })();
 </script>
